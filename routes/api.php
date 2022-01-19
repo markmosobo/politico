@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\API;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +18,15 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::apiResources([
+    'event' => API\EventController::class,
+    'news' => API\NewsController::class,
+    'slide' => API\SlidesController::class,
+    'about' => API\AboutController::class,
+    'moreabout' => API\MoreAboutController::class,
+    'biography' => API\BiographyController::class,
+    'issue' => API\IssueController::class,
+    'pledge' => API\PledgeController::class
+]);
+Route::get('tags',[API\TagController::class,'list']);

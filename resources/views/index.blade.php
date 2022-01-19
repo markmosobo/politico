@@ -1,41 +1,130 @@
-<!DOCTYPE html>
-<html lang="en">
-
-    <!-- Basic -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">   
+<!DOCTYPE html><html lang="en"><!-- Basic -->
+<head><meta charset="utf-8"/>
+<script data-ezscrex='false' data-cfasync='false' data-pagespeed-no-defer>var __ez=__ez||{};__ez.stms=Date.now();__ez.evt={};__ez.script={};__ez.ck=__ez.ck||{};__ez.template={};__ez.template.isOrig=true;__ez.queue=(function(){var count=0,incr=0,items=[],timeDelayFired=false,hpItems=[],lpItems=[],allowLoad=true;var obj={func:function(name,funcName,parameters,isBlock,blockedBy,deleteWhenComplete,proceedIfError){var self=this;this.name=name;this.funcName=funcName;this.parameters=parameters===null?null:(parameters instanceof Array)?parameters:[parameters];this.isBlock=isBlock;this.blockedBy=blockedBy;this.deleteWhenComplete=deleteWhenComplete;this.isError=false;this.isComplete=false;this.isInitialized=false;this.proceedIfError=proceedIfError;this.isTimeDelay=false;this.process=function(){log("... func = "+name);self.isInitialized=true;self.isComplete=true;log("... func.apply: "+name);var funcs=self.funcName.split('.');var func=null;if(funcs.length>3){}else if(funcs.length===3){func=window[funcs[0]][funcs[1]][funcs[2]];}else if(funcs.length===2){func=window[funcs[0]][funcs[1]];}else{func=window[self.funcName];}
+if(typeof func!=='undefined'&&func!==null){func.apply(null,this.parameters);}
+if(self.deleteWhenComplete===true)delete items[name];if(self.isBlock===true){log("----- F'D: "+self.name);processAll();}}},file:function(name,path,isBlock,blockedBy,async,defer,proceedIfError){var self=this;this.name=name;this.path=path;this.async=async;this.defer=defer;this.isBlock=isBlock;this.blockedBy=blockedBy;this.isInitialized=false;this.isError=false;this.isComplete=false;this.proceedIfError=proceedIfError;this.isTimeDelay=false;this.process=function(){self.isInitialized=true;log("... file = "+name);var scr=document.createElement('script');scr.src=path;if(async===true)scr.async=true;else if(defer===true)scr.defer=true;scr.onerror=function(){log("----- ERR'D: "+self.name);self.isError=true;if(self.isBlock===true){processAll();}};scr.onreadystatechange=scr.onload=function(){var state=scr.readyState;log("----- F'D: "+self.name);if((!state||/loaded|complete/.test(state))){self.isComplete=true;if(self.isBlock===true){processAll();}}};document.getElementsByTagName('head')[0].appendChild(scr);}},fileLoaded:function(name,isComplete){this.name=name;this.path="";this.async=false;this.defer=false;this.isBlock=false;this.blockedBy=[];this.isInitialized=true;this.isError=false;this.isComplete=isComplete;this.proceedIfError=false;this.isTimeDelay=false;this.process=function(){};}};function init(){window.addEventListener("load",function(){setTimeout(function(){timeDelayFired=true;log('TDELAY -----');processAll();},5000);},false);}
+function addFile(name,path,isBlock,blockedBy,async,defer,proceedIfError,priority){var item=new obj.file(name,path,isBlock,blockedBy,async,defer,proceedIfError);if(priority===true){hpItems[name]=item}else{lpItems[name]=item}
+items[name]=item;checkIfBlocked(item);}
+function setallowLoad(settobool){allowLoad=settobool}
+function addFunc(name,func,parameters,isBlock,blockedBy,autoInc,deleteWhenComplete,proceedIfError,priority){if(autoInc===true)name=name+"_"+incr++;var item=new obj.func(name,func,parameters,isBlock,blockedBy,deleteWhenComplete,proceedIfError);if(priority===true){hpItems[name]=item}else{lpItems[name]=item}
+items[name]=item;checkIfBlocked(item);}
+function addTimeDelayFile(name,path){var item=new obj.file(name,path,false,[],false,false,true);item.isTimeDelay=true;log(name+' ... '+' FILE! TDELAY');lpItems[name]=item;items[name]=item;checkIfBlocked(item);}
+function addTimeDelayFunc(name,func,parameters){var item=new obj.func(name,func,parameters,false,[],true,true);item.isTimeDelay=true;log(name+' ... '+' FUNCTION! TDELAY');lpItems[name]=item;items[name]=item;checkIfBlocked(item);}
+function checkIfBlocked(item){if(isBlocked(item)===true||allowLoad==false)return;item.process();}
+function isBlocked(item){if(item.isTimeDelay===true&&timeDelayFired===false){log(item.name+" blocked = TIME DELAY!");return true;}
+if(item.blockedBy instanceof Array){for(var i=0;i<item.blockedBy.length;i++){var block=item.blockedBy[i];if(items.hasOwnProperty(block)===false){log(item.name+" blocked = "+block);return true;}else if(item.proceedIfError===true&&items[block].isError===true){return false;}else if(items[block].isComplete===false){log(item.name+" blocked = "+block);return true;}}}
+return false;}
+function markLoaded(filename){if(!filename||0===filename.length){return;}
+if(filename in items){var item=items[filename];if(item.isComplete===true){log(item.name+' '+filename+': error loaded duplicate')}else{item.isComplete=true;item.isInitialized=true;}}else{items[filename]=new obj.fileLoaded(filename,true);}
+log("markLoaded dummyfile: "+items[filename].name);}
+function logWhatsBlocked(){for(var i in items){if(items.hasOwnProperty(i)===false)continue;var item=items[i];isBlocked(item)}}
+function log(msg){var href=window.location.href;var reg=new RegExp('[?&]ezq=([^&#]*)','i');var string=reg.exec(href);var res=string?string[1]:null;if(res==="1")console.debug(msg);}
+function processAll(){count++;if(count>200)return;log("let's go");processItems(hpItems);processItems(lpItems);}
+function processItems(list){for(var i in list){if(list.hasOwnProperty(i)===false)continue;var item=list[i];if(item.isComplete===true||isBlocked(item)||item.isInitialized===true||item.isError===true){if(item.isError===true){log(item.name+': error')}else if(item.isComplete===true){log(item.name+': complete already')}else if(item.isInitialized===true){log(item.name+': initialized already')}}else{item.process();}}}
+init();return{addFile:addFile,addDelayFile:addTimeDelayFile,addFunc:addFunc,addDelayFunc:addTimeDelayFunc,items:items,processAll:processAll,setallowLoad:setallowLoad,markLoaded:markLoaded,logWhatsBlocked:logWhatsBlocked,};})();__ez.evt.add=function(e,t,n){e.addEventListener?e.addEventListener(t,n,!1):e.attachEvent?e.attachEvent("on"+t,n):e["on"+t]=n()},__ez.evt.remove=function(e,t,n){e.removeEventListener?e.removeEventListener(t,n,!1):e.detachEvent?e.detachEvent("on"+t,n):delete e["on"+t]};__ez.script.add=function(e){var t=document.createElement("script");t.src=e,t.async=!0,t.type="text/javascript",document.getElementsByTagName("head")[0].appendChild(t)};__ez.dot={};__ez.queue.addFile('../../detroitchicago/boise.js', '../../detroitchicago/boise7697.js?gcb=195-0&amp;cb=1', false, [], true, false, true, false);__ez.queue.addFile('../../detroitchicago/memphis.js', '../../detroitchicago/memphis1dcc.js?gcb=195-0&amp;cb=14', false, [], true, false, true, false);__ez.queue.addFile('../../detroitchicago/minneapolis.js', '../../detroitchicago/minneapolis42b7.js?gcb=195-0&amp;cb=3', false, [], true, false, true, false);__ez.queue.addFile('../../detroitchicago/rochester.js', '../../detroitchicago/rochester0d65.js?gcb=195-0&amp;cb=12', false, ['/detroitchicago/memphis.js','/detroitchicago/minneapolis.js'], true, false, true, false);__ez.vep=(function(){var pixels=[],pxURL="../../detroitchicago/grapefruit.gif";function AddPixel(vID,pixelData){if(__ez.dot.isDefined(vID)&&__ez.dot.isValid(pixelData)){pixels.push({type:'video',video_impression_id:vID,domain_id:__ez.dot.getDID(),t_epoch:__ez.dot.getEpoch(0),data:__ez.dot.dataToStr(pixelData)});}}
+function Fire(){if(typeof document.visibilityState!=='undefined'&&document.visibilityState==="prerender"){return;}
+if(__ez.dot.isDefined(pixels)&&pixels.length>0){while(pixels.length>0){var j=5;if(j>pixels.length){j=pixels.length;}
+var pushPixels=pixels.splice(0,j);var pixelURL=__ez.dot.getURL(pxURL)+"?orig="+(__ez.template.isOrig===true?1:0)+"&v="+btoa(JSON.stringify(pushPixels));__ez.dot.Fire(pixelURL);}}
+pixels=[];}
+return{Add:AddPixel,Fire:Fire};})();</script><script data-ezscrex='false' data-cfasync='false' data-pagespeed-no-defer>__ez.pel=(function(){var pixels=[],pxURL="../../porpoiseant/army.gif";function AddAndFirePixel(adSlot,pixelData){AddPixel(adSlot,pixelData,0,0,0,0,0);Fire();}
+function AddAndFireOrigPixel(adSlot,pixelData){AddPixel(adSlot,pixelData,0,0,0,0,0,true);Fire();}
+function GetCurrentPixels(){return pixels;}
+function AddPixel(adSlot,pixelData,revenue,est_revenue,bid_floor_filled,bid_floor_prev,stat_source_id,isOrig){if(!__ez.dot.isDefined(adSlot)||__ez.dot.isAnyDefined(adSlot.getSlotElementId,adSlot.ElementId)==false){return;}
+var ad_position_id=parseInt(__ez.dot.getTargeting(adSlot,'ap'));var impId=__ez.dot.getSlotIID(adSlot),adUnit=__ez.dot.getAdUnit(adSlot,isOrig);var compId=parseInt(__ez.dot.getTargeting(adSlot,"compid"));var lineItemId=0;var creativeId=0;var ezimData=getEzimData(adSlot);if(typeof ezimData=='object'){if(ezimData.creative_id!==undefined){creativeId=ezimData.creative_id;}
+if(ezimData.line_item_id!==undefined){lineItemId=ezimData.line_item_id;}}
+if(__ez.dot.isDefined(impId,adUnit)&&__ez.dot.isValid(pixelData)){pixels.push({type:"impression",impression_id:impId,domain_id:__ez.dot.getDID(),unit:adUnit,t_epoch:__ez.dot.getEpoch(0),revenue:revenue,est_revenue:est_revenue,ad_position:ad_position_id,ad_size:"",bid_floor_filled:bid_floor_filled,bid_floor_prev:bid_floor_prev,stat_source_id:stat_source_id,country_code:__ez.dot.getCC(),pageview_id:__ez.dot.getPageviewId(),comp_id:compId,line_item_id:lineItemId,creative_id:creativeId,data:__ez.dot.dataToStr(pixelData),is_orig:isOrig||__ez.template.isOrig,});}}
+function AddPixelById(impFullId,pixelData,isOrig){var vals=impFullId.split('https://html.design/');if(__ez.dot.isDefined(impFullId)&&vals.length===3&&__ez.dot.isValid(pixelData)){var adUnit=vals[0],impId=vals[2];pixels.push({type:"impression",impression_id:impId,domain_id:__ez.dot.getDID(),unit:adUnit,t_epoch:__ez.dot.getEpoch(0),pageview_id:__ez.dot.getPageviewId(),data:__ez.dot.dataToStr(pixelData),is_orig:isOrig||__ez.template.isOrig});}}
+function Fire(){if(typeof document.visibilityState!=='undefined'&&document.visibilityState==="prerender")return;if(__ez.dot.isDefined(pixels)&&pixels.length>0){var allPixels=[pixels.filter(function(pixel){return pixel.is_orig}),pixels.filter(function(pixel){return!pixel.is_orig})];allPixels.forEach(function(pixels){while(pixels.length>0){var isOrig=pixels[0].is_orig||false;var j=5;if(j>pixels.length){j=pixels.length;}
+var pushPixels=pixels.splice(0,j);var pixelURL=__ez.dot.getURL(pxURL)+"?orig="+(isOrig===true?1:0)+"&sts="+btoa(JSON.stringify(pushPixels));if(typeof window.isAmp!=='undefined'&&isAmp&&typeof window._ezaq!=='undefined'&&_ezaq.hasOwnProperty("domain_id")){pixelURL+="&visit_uuid="+_ezaq['visit_uuid'];}
+__ez.dot.Fire(pixelURL);}})}
+pixels=[];}
+function getEzimData(adSlot){if(typeof _ezim_d=="undefined"){return false}
+var adUnitName=__ez.dot.getAdUnitPath(adSlot).split('https://html.design/').pop();if(typeof _ezim_d==='object'&&_ezim_d.hasOwnProperty(adUnitName)){return _ezim_d[adUnitName];}
+for(var ezimKey in _ezim_d){if(ezimKey.split('https://html.design/').pop()===adUnitName){return _ezim_d[ezimKey];}}
+return false;}
+return{Add:AddPixel,AddAndFire:AddAndFirePixel,AddAndFireOrig:AddAndFireOrigPixel,AddById:AddPixelById,Fire:Fire,GetPixels:GetCurrentPixels,};})();__ez.queue.addFile('../../detroitchicago/raleigh.js', '../../detroitchicago/raleigh45f7.js?gcb=195-0&amp;cb=5', false, [], true, false, true, false);__ez.queue.addFile('../../detroitchicago/tampa.js', '../../detroitchicago/tampa453e.js?gcb=195-0&amp;cb=4', false, [], true, false, true, false);</script>
+<script data-ezscrex="false" data-cfasync="false">(function(){if("function"===typeof window.CustomEvent)return!1;window.CustomEvent=function(c,a){a=a||{bubbles:!1,cancelable:!1,detail:null};var b=document.createEvent("CustomEvent");b.initCustomEvent(c,a.bubbles,a.cancelable,a.detail);return b}})();</script><script data-ezscrex="false" data-cfasync="false">__ez.queue.addFile('../../detroitchicago/tulsa.js', '../../detroitchicago/tulsa45f7.js?gcb=195-0&amp;cb=5', false, [], true, false, true, false);</script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>   
    
     <!-- Mobile Metas -->
-    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
  
      <!-- Site Metas -->
-    <title>ELPolitic - Responsive HTML5 OnePage Template</title>  
-    <meta name="keywords" content="">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <title>{{config('app.name')}}</title>  
+    <meta name="keywords" content=""/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
 
     <!-- Site Icons -->
-    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
-    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon"/>
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png"/>
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
     <!-- Site CSS -->
-    <link rel="stylesheet" href="{{asset('style.css')}}">
+    <link rel="stylesheet" href="style.css"/>
     <!-- Colors CSS -->
     
     <!-- ALL VERSION CSS -->
-    <link rel="stylesheet" href="{{asset('css/versions.css')}}">
+    <link rel="stylesheet" href="css/versions.css"/>
     <!-- Responsive CSS -->
-    <link rel="stylesheet" href="{{asset('css/responsive.css')}}">
+    <link rel="stylesheet" href="css/responsive.css"/>
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="{{asset('css/custom.css')}}">
+    <link rel="stylesheet" href="css/custom.css"/>
 
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+<link rel='canonical' href='index.html' />
+<script type="text/javascript">var ezouid = "1";</script><base ><script type='text/javascript'>
+var ezoTemplate = 'old_site_noads';
+if(typeof ezouid == 'undefined')
+{
+    var ezouid = 'none';
+}
+var ezoFormfactor = '1';
+var ezo_elements_to_check = Array();
+</script><!-- START EZHEAD -->
+<script data-ezscrex="false" type='text/javascript'>
+var soc_app_id = '0';
+var did = 317139;
+var ezdomain = 'html.design';
+var ezoicSearchable = 1;
+</script>
+<!--{jquery}-->
+<!-- END EZHEAD -->
+<script data-ezscrex="false" type="text/javascript" data-cfasync="false">var _ezaq = {"ad_cache_level":0,"ad_lazyload_version":0,"ad_load_version":0,"city":"Nairobi","country":"KE","days_since_last_visit":-1,"domain_id":317139,"engaged_time_visit":0,"ezcache_level":2,"ezcache_skip_code":0,"form_factor_id":1,"framework_id":1,"is_return_visitor":false,"is_sitespeed":0,"last_page_load":"","last_pageview_id":"","lt_cache_level":0,"metro_code":0,"page_ad_positions":"","page_view_count":0,"page_view_id":"d5167543-c10d-4519-5222-a398c81a9003","position_selection_id":0,"postal_code":"","pv_event_count":0,"response_size_orig":31567,"response_time_orig":2,"serverid":"3.6.88.150:25295","state":"30","t_epoch":1642250907,"template_id":120,"time_on_site_visit":0,"url":"https://html.design/demo/elpolitic/index.html","user_id":0,"weather_precipitation":0,"weather_summary":"","weather_temperature":0,"word_count":954,"worst_bad_word_level":1};var _ezExtraQueries = "&ez_orig=1";</script>
+<script data-ezscrex='false' data-pagespeed-no-defer data-cfasync='false'>
+function create_ezolpl(pvID, rv) {
+    var d = new Date();
+    d.setTime(d.getTime() + (365*24*60*60*1000));
+    var expires = "expires="+d.toUTCString();
+    __ez.ck.setByCat("ezux_lpl_317139=" + new Date().getTime() + "|" + pvID + "|" + rv + "; " + expires, 3);
+}
+function attach_ezolpl(pvID, rv) {
+    if (document.readyState === "complete") {
+        create_ezolpl(pvID, rv);
+    }
+    if(window.attachEvent) {
+        window.attachEvent("onload", create_ezolpl, pvID, rv);
+    } else {
+        if(window.onload) {
+            var curronload = window.onload;
+            var newonload = function(evt) {
+                curronload(evt);
+                create_ezolpl(pvID, rv);
+            };
+            window.onload = newonload;
+        } else {
+            window.onload = create_ezolpl.bind(null, pvID, rv);
+        }
+    }
+}
+
+__ez.queue.addFunc("attach_ezolpl", "attach_ezolpl", ["d5167543-c10d-4519-5222-a398c81a9003", "false"], false, ['/detroitchicago/boise.js'], true, false, false, false);
+</script>
 </head>
 <body class="politics_version">
 
@@ -48,7 +137,7 @@
     <!-- END LOADER -->
 
     <div class="topbar text-center hidden-xs">
-        <p>This site uses cookies. By continuing to browse ELPolitic, you are agreeing to use our site cookies. <a href="#">Find out more here ></a></p>
+        <p>This site uses cookies. By continuing to browse ELPolitic, you are agreeing to use our site cookies. <a href="#">Find out more here &gt;</a></p>
     </div>
 
     <header class="header header_style_01">
@@ -61,18 +150,18 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="index.html"><img src="images/logos/logo.png" alt="image"></a>
+                    <a class="navbar-brand" href="/"><img src="images/logo.jpg" alt="image"/></a>
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
                         <li><a data-scroll-nav="0" href="#main-banner" class="active">Home</a></li>
-                        <li><a data-scroll-nav="1" href="#about">About Us</a></li>
+                        <li><a data-scroll-nav="1" href="#about">About</a></li>
                         <li><a data-scroll-nav="2" href="#issues">Issues</a></li>
-                        <li><a data-scroll-nav="3" href="#event">Event</a></li>
+                        <li><a data-scroll-nav="3" href="#event">Events</a></li>
 						<li><a data-scroll-nav="4" href="#gallery">Gallery</a></li>
-                        <li><a data-scroll-nav="5" href="#media">Multimedia</a></li>
-						<li><a data-scroll-nav="6" href="#blog">Blog</a></li>
-                        <li><a data-scroll-nav="7" href="#contact">Contact</a></li>
+                        <li><a data-scroll-nav="5" href="#media">News</a></li>
+						<!-- <li><a data-scroll-nav="6" href="#blog">Blog</a></li> -->
+                        <!-- <li><a data-scroll-nav="7" href="#contact">Contact</a></li> -->
                     </ul>
                 </div>
             </div>
@@ -80,30 +169,36 @@
     </header>
 	
 	<div id="main-banner" class="banner-one" data-scroll-index="0">
-		<div data-src="uploads/slide-1.jpg">
+		<div data-src="uploads/slide-4.jpg">
 			<div class="camera_caption">
 				<div class="container">
-					<h1 class="wow fadeInUp animated">World is greater than five #ELPolitic</h1>
-					<p class="wow fadeInUp animated" data-wow-delay="0.2s">With ELPolitic responsive landing page template, you can showcase your next politics & politician websites!</p>
-					<a data-scroll href="#" class="btn btn-light btn-radius btn-brd grd1">DONATE</a>
+					<h1 class="wow fadeInUp animated">Education is key to our future</h1>
+					<p class="wow fadeInUp animated" data-wow-delay="0.2s">Education is the passport to the future, for tommorow
+                        belongs to those who prepare for it today.
+                    </p>
+					<a data-scroll="" href="#donate" class="btn btn-light btn-radius btn-brd grd1">CONTRIBUTE</a>
 				</div> <!-- /.container -->
 			</div> <!-- /.camera_caption -->
 		</div>
-		<div data-src="uploads/slide-2.jpg">
+		<div data-src="uploads/slide-4.png">
 			<div class="camera_caption">
 				<div class="container">
-					<h1 class="wow fadeInUp animated">World is greater than five #ELPolitic</h1>
-					<p class="wow fadeInUp animated" data-wow-delay="0.2s">With ELPolitic responsive landing page template, you can showcase your next politics & politician websites!</p>
-					<a data-scroll href="#" class="btn btn-light btn-radius btn-brd grd1">DONATE</a>
+					<h1 class="wow fadeInUp animated">The mother of democracy #MamaNiMmoja</h1>
+					<p class="wow fadeInUp animated" data-wow-delay="0.2s">She is credited with having courageously fought for the
+                        increase of democractic space in Mumias.
+                    </p>
+					<a data-scroll="" href="#donate" class="btn btn-light btn-radius btn-brd grd1">CONTRIBUTE</a>
 				</div> <!-- /.container -->
 			</div> <!-- /.camera_caption -->
 		</div>
 		<div data-src="uploads/slide-3.jpg">
 			<div class="camera_caption">
 				<div class="container">
-					<h1 class="wow fadeInUp animated">World is greater than five #ELPolitic</h1>
-					<p class="wow fadeInUp animated" data-wow-delay="0.2s">With ELPolitic responsive landing page template, you can showcase your next politics & politician websites!</p>
-					<a data-scroll href="#" class="btn btn-light btn-radius btn-brd grd1">DONATE</a>
+					<h1 class="wow fadeInUp animated">Building Bridges #Initiative</h1>
+					<p class="wow fadeInUp animated" data-wow-delay="0.2s">Building Bridges to a auNited Kenya from a 
+                        nation of blood ties to a nation of ideal.
+                    </p>
+					<a data-scroll="" href="#donate" class="btn btn-light btn-radius btn-brd grd1">CONTRIBUTE</a>
 				</div> <!-- /.container -->
 			</div> <!-- /.camera_caption -->
 		</div>
@@ -113,133 +208,97 @@
     <div id="about" data-scroll-index="1" class="section wb">
         <div class="container">
             <div class="row">
+                @foreach($abouts as $about)
                 <div class="col-md-6">
                     <div class="message-box">
-                        <h4>Who We are</h4>
-                        <h2>Welcome to  ELPolitic</h2>
-                        <blockquote class="lead">Quisque eget nisl id nulla sagittis auctor quis id. Aliquam quis vehicula enim, non aliquam risus. Sed a tellus quis mi rhoncus dignissim.</blockquote>
+                        <h4>Welcome to Jackie Okanya </h4>
+                        <h2>My Mission & Values</h2>
+                        <blockquote class="lead">{{$about->mission}}</blockquote>
 
-                        <p> Integer rutrum ligula eu dignissim laoreet. Pellentesque venenatis nibh sed tellus faucibus bibendum. Sed fermentum est vitae rhoncus molestie. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed vitae rutrum neque. Ut id erat sit amet libero bibendum aliquam. Donec ac egestas libero, eu bibendum risus. Phasellus et congue justo. </p>
+                        <p> {{$about->introduction}} </p>
 
-                        <a href="#services" data-scroll class="btn btn-light btn-radius btn-brd grd1">Learn More</a>
+                        <a href="#blog" data-scroll="" class="btn btn-light btn-radius btn-brd grd1">Know More</a>
                     </div><!-- end messagebox -->
                 </div><!-- end col -->
 
                 <div class="col-md-6">
                     <div class="post-media wow fadeIn">
-                        <img src="uploads/about_04.png" alt="" class="img-responsive img-rounded">
-                        <a href="http://www.youtube.com/watch?v=nrJtHemSPW4" data-rel="prettyPhoto[gal]" class="playbutton"><i class="flaticon-play-button"></i></a>
+                        <img src="uploads/slide-4.png" alt="" class="img-responsive img-rounded"/>
+                        <a href="{{$about->media}}" data-rel="prettyPhoto[gal]" class="playbutton"><i class="flaticon-play-button"></i></a>
                     </div><!-- end media -->
                 </div><!-- end col -->
+                @endforeach
             </div><!-- end row -->
 
-            <hr class="hr1"> 
+            <hr class="hr1"/> 
 
-            <div class="row text-center">
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                   <div class="service-widget">
-                        <div class="post-media_pp wow fadeIn">
-                            <a href="uploads/politic_01.jpg" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="flaticon-unlink"></i></a>
-                            <img src="uploads/politic_01.jpg" alt="" class="img-responsive">
-							<div class="hover-up">
-								<h3>Let's work for a better future</h3>
-								<p>Aliquam sagittis ligula et sem lacinia, ut facilisis enim sollicitudin. Proin nisi est, 
-								convallis nec purus vitae, iaculis posuere sapien. Cum sociis natoque.</p>
+	<div id="blog" data-scroll-index="6" class="section lb">
+		<div class="container">
+			<div class="section-title text-center">
+            <span>Know more about</span>
+                <h3>Mother of Democracy</h3>
+                <p class="lead">{{config('app.name')}} is flatteringly referred to as the “mama ni Mmoja”. She is one of the few politicians in the country who are loved and loathed in equal measures. .<br/>
+                There is no doubt that Jackie is the most capable and influential politician in Mumias and the region.</p>
+            </div>
+			
+			<div class="row">
+                @foreach($moreabouts as $about)
+				<div class="col-md-4 col-sm-6 col-lg-4">
+					<div class="post-box">
+						<div class="post-thumb">
+							<img src="uploads/{{$about->photo}}" class="img-responsive" alt="post-img"/>
+							<div class="date">
+								<span>{{$about->tags}}</span>
 							</div>
-                        </div>
-                        
-                    </div><!-- end service -->
-                </div>
+						</div>
+						<div class="post-info">
+							<h4>{{$about->attribute}}</h4>
 
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                    <div class="service-widget">
-                        <div class="post-media_pp wow fadeIn">
-                            <a href="uploads/politic_02.jpg" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="flaticon-unlink"></i></a>
-                            <img src="uploads/politic_02.jpg" alt="" class="img-responsive">
-							<div class="hover-up">
-								<h3>Parliament building was renovated</h3>
-								<p>Duis at tellus at dui tincidunt scelerisque nec sed felis. Suspendisse id dolor sed leo 
-								rutrum euismod. Nullam vestibulum fermentum erat. It nam auctor. </p>
-							</div>
-                        </div>
-                        
-                    </div><!-- end service -->
-                </div>
+							<p>{{$about->description}}</p>
+						</div>
+					</div>
+				</div>
+                @endforeach
+			</div>
+			
+		</div>
+	</div>
 
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                    <div class="service-widget">
-                        <div class="post-media_pp wow fadeIn">
-                            <a href="uploads/politic_03.jpg" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="flaticon-unlink"></i></a>
-                            <img src="uploads/politic_03.jpg" alt="" class="img-responsive">
-							<div class="hover-up">
-								<h3>Start new legislative year</h3>
-								<p>Etiam materials ut mollis tellus, vel posuere nulla. Etiam sit amet lacus vitae massa sodales aliquam at eget quam. Integer ultricies et magna quis.</p>
-							</div>
-                        </div>
-                        
-                    </div><!-- end service -->
-                </div>
-				
-				<div class="col-md-6 col-sm-6 col-xs-12">
-                    <div class="service-widget">
-                        <div class="post-media_pp wow fadeIn">
-                            <a href="uploads/politic_02.jpg" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="flaticon-unlink"></i></a>
-                            <img src="uploads/politic_02.jpg" alt="" class="img-responsive">
-							<div class="hover-up">
-								<h3>Parliament building was renovated</h3>
-								<p>Duis at tellus at dui tincidunt scelerisque nec sed felis. Suspendisse id dolor sed leo rutrum euismod. Nullam vestibulum fermentum erat. It nam auctor. </p>
-							</div>
-                        </div>
-                    </div><!-- end service -->
-                </div>
-            </div><!-- end row -->
         </div><!-- end container -->
     </div><!-- end section -->
 
     <div class="section nopad">
-        <img src="uploads/" alt="" class="img-responsive">
+        <img src="uploads/index.html" alt="" class="img-responsive"/>
     </div>
 
     <div id="issues" data-scroll-index="2" class="section lb">
         <div class="container">
             <div class="section-title text-left">
-                <h3>Issues & Plans</h3>
-                <p class="lead">Quisque eget nisl id nulla sagittis auctor quis id. Aliquam quis vehicula enim, non aliquam risus.<br> Sed a tellus quis mi rhoncus dignissim.</p>
+                <h3>Issues &amp; Plans</h3>
+                <p class="lead">{{config('app.name')}} has a well-laid out manifesto regarding her developemnt agenda within Mumias constituency.<br/> Her key areas to address are clearly outlined.</p>
             </div><!-- end title -->
 
             <div class="row">
+                @foreach($pledge as $pleg)
 				<div class="col-md-5">
                     <div class="issuse-wrap2 clearfix">
-                        <img src="uploads/about_04.jpg" alt="" class="img-responsive img-rounded">
-                        <h4>"Turkey will continue to make structural economic reforms”</h4>
-                        <p>Etiam materials ut mollis tellus, vel posuere nulla. Etiam sit amet massa sodales aliquam at eget quam. Integer ultricies et magna quis.</p>
-                        <p>Tiam sit amet lacus vitae massa sodales aliquam at eget quam. Integer ultricies et magna quis.</p>
+                        <img src="uploads/{{$pleg->photo}}" alt="" class="img-responsive img-rounded"/>
+                        <h4>{{$pleg->pledge}}</h4>
+                        <p>{{$pleg->details}}</p>
                     </div><!-- end issue -->
-                </div><!-- end col -->
+                    <a href="#issues" data-scroll="" class="btn btn-light btn-radius btn-brd grd1">Download Manifesto</a>
+
+                </div>
+                @endforeach
+                <!-- end col -->
                 <div class="col-md-7">
+                    @foreach($issues as $issue)
                     <div class="issuse-wrap clearfix">
-                        <img src="uploads/issue_01.jpg" alt="" class="img-responsive img-rounded alignleft">
-                        <h4>CLIMATE CHANGE</h4>
-                        <p>Etiam materials ut mollis tellus, vel posuere nulla. Etiam sit amet massa sodales aliquam at eget quam. Integer ultricies et magna quis.</p>
+                        <img src="uploads/{{$issue->photo}}" alt="" class="img-responsive img-rounded alignleft"/>
+                        <h4>{{$issue->name}}</h4>
+                        <p>{{$issue->details}}</p>
                     </div><!-- end issue -->
-
-                    <div class="issuse-wrap clearfix">
-                        <img src="uploads/issue_02.jpg" alt="" class="img-responsive img-rounded alignleft">
-                        <h4>COMPREHENSIVE IMMIGRATION REFORM</h4>
-                        <p>Etiam materials ut mollis tellus, vel posuere nulla. Etiam sit amet lacus vitae massa sodales aliquam at eget quam. Integer ultricies et magna quis.</p>
-                    </div><!-- end issue -->
-
-                    <div class="issuse-wrap clearfix">
-                        <img src="uploads/issue_03.jpg" alt="" class="img-responsive img-rounded alignleft">
-                        <h4>ECONOMIC OPPORTUNITY</h4>
-                        <p>Etiam materials ut mollis tellus, vel posuere nulla. Etiam sit amet lacus vitae massa sodales aliquam at eget quam. Integer ultricies et magna quis.</p>
-                    </div><!-- end issue -->
-
-                    <div class="issuse-wrap lastchild clearfix">
-                        <img src="uploads/issue_04.jpg" alt="" class="img-responsive img-rounded alignleft">
-                        <h4>HEALTH CARE</h4>
-                        <p>Etiam materials ut mollis tellus, vel posuere nulla. Etiam sit amet lacus vitae massa sodales aliquam at eget quam. Integer ultricies et magna quis.</p>
-                    </div><!-- end issue -->
+                    @endforeach
                 </div><!-- end col -->
             </div><!-- end row -->
         </div><!-- end container -->
@@ -248,70 +307,33 @@
     <div id="event" data-scroll-index="3" class="section wb">
         <div class="container">
             <div class="section-title text-center">
-                <h3>Events</h3>
-                <p class="lead">Quisque eget nisl id nulla sagittis auctor quis id. Aliquam quis vehicula enim, non aliquam risus.<br> Sed a tellus quis mi rhoncus dignissim.</p>
+                <h3>Latest Events</h3>
+                <p class="lead">Quisque eget nisl id nulla sagittis auctor quis id. Aliquam quis vehicula enim, non aliquam risus.<br/> Sed a tellus quis mi rhoncus dignissim.</p>
             </div><!-- end title -->
 
             <div class="row">
+                @foreach($events as $event)
                 <div class="col-md-4">
                     <div class="participate-wrap">
                         <small>Technology</small>
 						<figure>
-							<img src="uploads/politic_04.jpg" alt="" class="img-responsive">
+							<img src="uploads/{{$event->photo}}" alt="" class="img-responsive"/>
 							<figcaption><a href="#" class="global-radius"> <i class="flaticon-unlink"></i> </a></figcaption>
 						</figure>
 						<div class="event_dit">
-							<h4>Integer sollicitudin metus</h4>
+							<h4>{{$event->title}}</h4>
 							<ul>
-								<li> <a href="#"> <i class="fa fa-calendar"></i> 24-10-2015 </a> </li>
-								<li> <a href="#"> <i class="fa fa-clock-o"></i> 7:00 PM to 9:00 PM </a>  </li>
-								<li> <a href="#"> <i class="fa fa-map-marker"></i> NY City, USA </a> </li>
+								<li> <a href="#"> <i class="fa fa-calendar"></i> {{$event->date}} </a> </li>
+								<li> <a href="#"> <i class="fa fa-clock-o"></i> {{$event->start_time}} to {{$event->end_time}} </a>  </li>
+								<li> <a href="#"> <i class="fa fa-map-marker"></i> {{$event->venue}} </a> </li>
 							</ul>
-							<p>Etiam materials ut mollis tellus, vel posuere nulla. Etiam sit amet massa sodales aliquam at eget quam. Integer ultricies et magna quis.</p>
+							<p>{{$event->details}}</p>
 							<a href="event-detail.html" class="btn btn-light btn-radius btn-brd grd1">Detail</a>
 						</div>
                     </div><!-- end participate -->
                 </div><!-- end col -->
+                @endforeach
 
-                <div class="col-md-4">
-                    <div class="participate-wrap">
-                        <small>Let's Speak with Us</small>
-						<figure>
-							<img src="uploads/politic_05.jpg" alt="" class="img-responsive">
-							<figcaption><a href="#" class="global-radius"> <i class="flaticon-unlink"></i> </a></figcaption>
-						</figure>
-						<div class="event_dit">
-							<h4>Integer facilisis elit</h4>
-							<ul>
-								<li> <a href="#"> <i class="fa fa-calendar"></i> 24-10-2015 </a> </li>
-								<li> <a href="#"> <i class="fa fa-clock-o"></i> 7:00 PM to 9:00 PM </a>  </li>
-								<li> <a href="#"> <i class="fa fa-map-marker"></i> NY City, USA </a> </li>
-							</ul>
-							<p>Etiam materials ut mollis tellus, vel posuere nulla. Etiam sit amet massa sodales aliquam at eget quam. Integer ultricies et magna quis.</p>
-							<a href="event-detail.html" class="btn btn-light btn-radius btn-brd grd1">Detail</a>
-						</div>
-                    </div><!-- end participate -->
-                </div><!-- end col -->
-
-                <div class="col-md-4">
-                    <div class="participate-wrap">
-                        <small>Join Us for Free</small>
-                        <figure>
-							<img src="uploads/politic_06.jpg" alt="" class="img-responsive">
-							<figcaption><a href="#" class="global-radius"> <i class="flaticon-unlink"></i> </a></figcaption>
-						</figure>
-                        <div class="event_dit">
-							<h4>Maecenas bibendum tellus</h4>
-							<ul>
-								<li> <a href="#"> <i class="fa fa-calendar"></i> 24-10-2015 </a> </li>
-								<li> <a href="#"> <i class="fa fa-clock-o"></i> 7:00 PM to 9:00 PM </a>  </li>
-								<li> <a href="#"> <i class="fa fa-map-marker"></i> NY City, USA </a> </li>
-							</ul>
-							<p>Etiam materials ut mollis tellus, vel posuere nulla. Etiam sit amet massa sodales aliquam at eget quam. Integer ultricies et magna quis.</p>
-							<a href="event-detail.html" class="btn btn-light btn-radius btn-brd grd1">Detail</a>
-						</div>
-                    </div><!-- end participate -->
-                </div><!-- end col -->
             </div><!-- end row -->
         </div><!-- end container -->
     </div><!-- end section -->
@@ -321,8 +343,8 @@
 		<div class="container">
 			<div class="section-title text-center">
                 <h3>Gallery</h3>
-                <p class="lead">Quisque eget nisl id nulla sagittis auctor quis id. Aliquam quis vehicula enim, non aliquam risus.<br> Sed a tellus quis mi rhoncus dignissim.</p>
-            </div><!-- end title -->
+                <p class="lead">Quisque eget nisl id nulla sagittis auctor quis id. Aliquam quis vehicula enim, non aliquam risus.<br/> Sed a tellus quis mi rhoncus dignissim.</p>
+            </div>
 			
 			<div class="gallery-menu row">
 				<div class="col-md-12">
@@ -339,7 +361,7 @@
 			<div class="gallery-list row">
 				<div class="col-md-4 col-sm-6 gallery-grid gal_a gal_b">
 					<div class="gallery-single fix">
-						<img src="uploads/gallery_img-01.jpg" class="img-responsive" alt="Image">
+						<img src="uploads/gallery_img-01.jpg" class="img-responsive" alt="Image"/>
 						<div class="img-overlay">
 							<a href="uploads/gallery_img-01.jpg" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="flaticon-unlink"></i></a>
 						</div>
@@ -348,7 +370,7 @@
 				
 				<div class="col-md-4 col-sm-6 gallery-grid gal_c gal_b">
 					<div class="gallery-single fix">
-						<img src="uploads/gallery_img-02.jpg" class="img-responsive" alt="Image">
+						<img src="uploads/gallery_img-02.jpg" class="img-responsive" alt="Image"/>
 						<div class="img-overlay">
 							<a href="uploads/gallery_img-02.jpg" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="flaticon-unlink"></i></a>
 						</div>
@@ -357,7 +379,7 @@
 				
 				<div class="col-md-4 col-sm-6 gallery-grid gal_a gal_c">
 					<div class="gallery-single fix">
-						<img src="uploads/gallery_img-03.jpg" class="img-responsive" alt="Image">
+						<img src="uploads/gallery_img-03.jpg" class="img-responsive" alt="Image"/>
 						<div class="img-overlay">
 							<a href="uploads/gallery_img-03.jpg" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="flaticon-unlink"></i></a>
 						</div>
@@ -366,7 +388,7 @@
 				
 				<div class="col-md-4 col-sm-6 gallery-grid gal_b gal_a">
 					<div class="gallery-single fix">
-						<img src="uploads/gallery_img-04.jpg" class="img-responsive" alt="Image">
+						<img src="uploads/gallery_img-04.jpg" class="img-responsive" alt="Image"/>
 						<div class="img-overlay">
 							<a href="uploads/gallery_img-04.jpg" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="flaticon-unlink"></i></a>
 						</div>
@@ -375,7 +397,7 @@
 				
 				<div class="col-md-4 col-sm-6 gallery-grid gal_a gal_c">
 					<div class="gallery-single fix">
-						<img src="uploads/gallery_img-05.jpg" class="img-responsive" alt="Image">
+						<img src="uploads/gallery_img-05.jpg" class="img-responsive" alt="Image"/>
 						<div class="img-overlay">
 							<a href="uploads/gallery_img-05.jpg" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="flaticon-unlink"></i></a>
 						</div>
@@ -384,7 +406,7 @@
 				
 				<div class="col-md-4 col-sm-6 gallery-grid gal_c gal_d">
 					<div class="gallery-single fix">
-						<img src="uploads/gallery_img-06.jpg" class="img-responsive" alt="Image">
+						<img src="uploads/gallery_img-06.jpg" class="img-responsive" alt="Image"/>
 						<div class="img-overlay">
 							<a href="uploads/gallery_img-06.jpg" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="flaticon-unlink"></i></a>
 						</div>
@@ -393,150 +415,59 @@
 			</div>
 			</div>
 		</div>
-	</div>
 	
-    <div id="media" data-scroll-index="5" class="section wb">
+	
+    
+        <div id="media" data-scroll-index="5" class="section wb">
         <div class="container">
             <div class="section-title text-center">
-                <h3>Multimedia</h3>
-                <p class="lead">Quisque eget nisl id nulla sagittis auctor quis id. Aliquam quis vehicula enim, non aliquam risus.<br> Sed a tellus quis mi rhoncus dignissim.</p>
-            </div><!-- end title -->
+                <h3>News & Media</h3>
+                <p class="lead">Quisque eget nisl id nulla sagittis auctor quis id. Aliquam quis vehicula enim, non aliquam risus.<br/> Sed a tellus quis mi rhoncus dignissim.</p>
+            </div>
 
             <div class="row">
+                @foreach($news as $new)
                 <div class="col-md-4">
                     <div class="issuse-wrap2 clearfix">
                         <div class="post-media wow fadeIn">
-                            <img src="uploads/news_01.jpg" alt="" class="img-responsive img-rounded">
-                            <a href="http://www.youtube.com/watch?v=nrJtHemSPW4" data-rel="prettyPhoto[gal]" class="playbutton"><i class="flaticon-play-button"></i></a>
-                        </div><!-- end media -->
-                        <h4>"A Political News from Us! Don't forget Watch”</h4>
-                        <p>Etiam materials ut mollis tellus, vel posuere nulla. Etiam sit amet massa sodales aliquam at eget quam. Integer ultricies et magna quis.</p>
-                    </div><!-- end issue -->
-                </div><!-- end col -->
-
-                <div class="col-md-4">
-                    <div class="issuse-wrap2 clearfix">
-                        <div class="post-media wow fadeIn">
-                            <img src="uploads/news_02.jpg" alt="" class="img-responsive img-rounded">
-                            <a href="http://www.youtube.com/watch?v=nrJtHemSPW4" data-rel="prettyPhoto[gal]" class="playbutton"><i class="flaticon-play-button"></i></a>
-                        </div><!-- end media -->
-                        <h4>"Our Speaker Talking About Our Strategy! All plans!"</h4>
-                        <p>Etiam materials ut mollis tellus, vel posuere nulla. Etiam sit amet massa sodales aliquam at eget quam. Integer ultricies et magna quis.</p>
-                    </div><!-- end issue -->
-                </div><!-- end col -->
-
-                <div class="col-md-4">
-                    <div class="issuse-wrap2 clearfix">
-                        <div class="post-media wow fadeIn">
-                            <img src="uploads/news_03.jpg" alt="" class="img-responsive img-rounded">
-                            <a href="http://www.youtube.com/watch?v=nrJtHemSPW4" data-rel="prettyPhoto[gal]" class="playbutton"><i class="flaticon-play-button"></i></a>
-                        </div><!-- end media -->
-                        <h4>"Say Hello to our new politican : John DOE..”</h4>
-                        <p>Etiam materials ut mollis tellus, vel posuere nulla. Etiam sit amet massa sodales aliquam at eget quam. Integer ultricies et magna quis.</p>
-                    </div><!-- end issue -->
-                </div><!-- end col -->
-            </div><!-- end row -->
-        </div><!-- end container -->
-    </div><!-- end section -->
+                            <img src="uploads/news/{{$new->photo}}" alt="" class="img-responsive img-rounded"/>
+                            <a href="{{$new->slug}}" data-rel="prettyPhoto[gal]" class="playbutton"><i class="flaticon-play-button"></i></a>
+                        </div>
+                        <h4>{{$new->headline}}</h4>
+                        <p>{{$new->details}}</p>
+                    </div>
+                </div>
+                @endforeach
+            </div>
+        </div>
+    </div><!--end section-->
 	
-	<div id="blog" data-scroll-index="6" class="section lb">
-		<div class="container">
-			<div class="section-title text-center">
-				<span>Latest news</span>
-                <h3>From Blog</h3>
-                <p class="lead">Quisque eget nisl id nulla sagittis auctor quis id. Aliquam quis vehicula enim, non aliquam risus.<br> Sed a tellus quis mi rhoncus dignissim.</p>
-            </div><!-- end title -->
-			
-			<div class="row">
-				<div class="col-md-4 col-sm-6 col-lg-4">
-					<div class="post-box">
-						<div class="post-thumb">
-							<img src="uploads/politic_04.jpg" class="img-responsive" alt="post-img" />
-							<div class="date">
-								<span>06</span>
-								<span>Aug</span>
-							</div>
-						</div>
-						<div class="post-info">
-							<h4>Maecenas bibendum tellus</h4>
-							<ul>
-                                <li>by admin</li>
-                                <li>Apr 21, 2018</li>
-                                <li><a href="#"><b> Comments</b></a></li>
-                            </ul>
-							<p>Etiam materials ut mollis tellus, vel posuere nulla. Etiam sit amet massa sodales aliquam at eget quam. Integer ultricies et magna quis.</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 col-sm-6 col-lg-4">
-					<div class="post-box">
-						<div class="post-thumb">
-							<img src="uploads/politic_05.jpg" class="img-responsive" alt="post-img" />
-							<div class="date">
-								<span>06</span>
-								<span>Aug</span>
-							</div>
-						</div>
-						<div class="post-info">
-							<h4>Maecenas bibendum tellus</h4>
-							<ul>
-                                <li>by admin</li>
-                                <li>Apr 21, 2018</li>
-                                <li><a href="#"><b> Comments</b></a></li>
-                            </ul>
-							<p>Etiam materials ut mollis tellus, vel posuere nulla. Etiam sit amet massa sodales aliquam at eget quam. Integer ultricies et magna quis.</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 col-sm-6 col-lg-4">
-					<div class="post-box">
-						<div class="post-thumb">
-							<img src="uploads/politic_06.jpg" class="img-responsive" alt="post-img" />
-							<div class="date">
-								<span>06</span>
-								<span>Aug</span>
-							</div>
-						</div>
-						<div class="post-info">
-							<h4>Maecenas bibendum tellus</h4>
-							<ul>
-                                <li>by admin</li>
-                                <li>Apr 21, 2018</li>
-                                <li><a href="#"><b> Comments</b></a></li>
-                            </ul>
-							<p>Etiam materials ut mollis tellus, vel posuere nulla. Etiam sit amet massa sodales aliquam at eget quam. Integer ultricies et magna quis.</p>
-						</div>
-					</div>
-				</div>
-			</div>
-			
-		</div>
-	</div>
+
 
     <div id="donate" data-scroll-index="7" class="section db">
         <div class="container">
             <div class="section-title text-center">
-                <h3>Contact</h3>
-                <p class="lead">Quisque eget nisl id nulla sagittis auctor quis id. Aliquam quis vehicula enim, non aliquam risus.<br> Sed a tellus quis mi rhoncus dignissim.</p>
+                <h3>Contribute</h3>
+                <p class="lead">Quisque eget nisl id nulla sagittis auctor quis id. Aliquam quis vehicula enim, non aliquam risus.<br/> Sed a tellus quis mi rhoncus dignissim.</p>
             </div><!-- end title -->
 
             <div class="row">
                 <div class="col-md-12">
                     <div class="contact_form">
                         <div id="message"></div>
-                        <form id="contactform" class="row" action="contact.php" name="contactform" method="post">
+                        <form id="contactform" class="row" action="https://html.design/demo/elpolitic/contact.php" name="contactform" method="post">
                             <fieldset class="row-fluid">
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                    <input type="text" name="first_name" id="first_name" class="form-control" placeholder="First Name">
+                                    <input type="text" name="first_name" id="first_name" class="form-control" placeholder="First Name"/>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                    <input type="text" name="last_name" id="last_name" class="form-control" placeholder="Last Name">
+                                    <input type="text" name="last_name" id="last_name" class="form-control" placeholder="Last Name"/>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                    <input type="email" name="email" id="email" class="form-control" placeholder="Your Email">
+                                    <input type="email" name="email" id="email" class="form-control" placeholder="Your Email"/>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                    <input type="text" name="phone" id="phone" class="form-control" placeholder="Your Phone">
+                                    <input type="text" name="phone" id="phone" class="form-control" placeholder="Your Phone"/>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                     <label class="sr-only">Select Service</label>
@@ -559,7 +490,7 @@
                                     <textarea class="form-control" name="comments" id="comments" rows="6" placeholder="Why you are donate us?"></textarea>
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 text-center">
-                                    <button type="submit" value="SEND" id="submit" class="btn btn-light btn-radius btn-brd grd1 btn-block">Pay Now via PayPal</button>
+                                    <button type="submit" value="SEND" id="submit" class="btn btn-light btn-radius btn-brd grd1 btn-block">Pay Now via MPESA</button>
                                 </div>
                             </fieldset>
                         </form>
@@ -574,20 +505,16 @@
             <div class="footer-distributed">
                 <div class="footer-left">
                     <p class="footer-links">
-                        <a href="#">Home</a>
-                        <a href="#">Blog</a>
-                        <a href="#">Pricing</a>
-                        <a href="#">About</a>
-                        <a href="#">Faq</a>
-                        <a href="#">Contact</a>
+                        <a href="#">Biography</a>
+                        <a href="#">Contact Us</a>
                     </p>
-                    <p class="footer-company-name">All Rights Reserved. &copy; 2018 <a href="#">Elpolitic</a> Design By : 
-					<a href="https://html.design/">html design</a></p>
+                    <p class="footer-company-name">All Rights Reserved. © 2018 <a href="#">{{config('app.name')}}</a> Design By : 
+					<a href="#" title="Bluewave Company">Bluewave Company Limited</a></p>
                 </div>
 
                 <div class="footer-right">
                     <form method="get" action="#">
-                        <input placeholder="Subscribe our newsletter.." name="search">
+                        <input placeholder="Subscribe our newsletter.." name="search"/>
                         <i class="fa fa-envelope-o"></i>
                     </form>
                 </div>
@@ -600,13 +527,29 @@
     <!-- ALL JS FILES -->
     <script src="js/all.js"></script>
 	<!-- Camera Slider -->
-	<script src="{{asset('jquery.mobile.customized.min.js')}}js/"></script>
-	<script src="{{asset('js/jquery.easing.1.3.js')}}"></script> 
-	<script src="{{asset('js/camera.min.js')}}"></script>
-	<script src="{{asset('js/scrollIt.min.js')}}"></script>
+	<script src="js/jquery.mobile.customized.min.js"></script>
+	<script src="js/jquery.easing.1.3.js"></script> 
+	<script src="js/camera.min.js"></script>
+	<script src="js/scrollIt.min.js"></script>
     <!-- ALL PLUGINS -->
-    <script src="{{asset('js/custom.js')}}"></script>
-    <script src="{{asset('js/jquery.vide.js')}}"></script>
+    <script src="js/custom.js"></script>
+    <script src="js/jquery.vide.js"></script>
 
-</body>
+
+<include id="includedContent"></include>
+  <script>
+  $(function(){
+      $("#includedContent").load("https://html.design/demo/htmlads.html"); 
+    });
+  </script>
+
+ 
+<script type='text/javascript' style='display:none;' async>
+__ez.queue.addFile('/detroitchicago/edmonton.webp', '/detroitchicago/edmonton.webp?a=a&cb=0&shcb=34', true, ['/detroitchicago/minneapolis.js'], true, false, false, false);
+__ez.queue.addFile('/porpoiseant/jellyfish.webp', '/porpoiseant/jellyfish.webp?a=a&cb=0&shcb=34', false, [], true, false, false, false);
+</script>
+
+<script>var _audins_dom="html_design",_audins_did=317139;__ez.queue.addDelayFunc("audins.js","__ez.script.add", "../../../go.ezoic.net/detroitchicago/audins0d9f.js?cb=195-0");</script><noscript><div style="display:none;"><img src="../../../pixel.quantserve.com/pixel/p-31iz6hfFutd16d537.gif?labels=Domain.html_design,DomainId.317139" border="0" height="1" width="1" alt="Quantcast"/></div></noscript>
+<script type="text/javascript" data-cfasync="false"></script>
+<script>__ez.queue.addFile('../../tardisrocinante/vitals.js', '../../tardisrocinante/vitals5038.js?gcb=0&amp;cb=3', false, ['/detroitchicago/minneapolis.js'], true, false, true, false);</script></body>
 </html>

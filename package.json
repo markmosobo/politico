@@ -11,8 +11,29 @@
     },
     "devDependencies": {
         "axios": "^0.21",
-        "laravel-mix": "^6.0.6",
+        "bootstrap": "^4.6.0",
+        "jquery": "^3.6.0",
         "lodash": "^4.17.19",
-        "postcss": "^8.1.14"
+        "popper.js": "^1.16.1",
+        "postcss": "^8.1.14",
+        "resolve-url-loader": "^3.1.2",
+        "sass": "^1.32.11",
+        "sass-loader": "^11.0.1",
+        "vform": "^2.1.1",
+        "vue": "^2.6.12",
+        "vue-loader": "^15.9.8",
+        "vue-progressbar": "^0.7.5",
+        "vue-router": "^3.5.2",
+        "vue-template-compiler": "^2.6.12"
+    },
+    "dependencies": {
+        "@fortawesome/fontawesome-free": "^5.15.4",
+        "admin-lte": "^3.1.0",
+        "laravel-mix": "^6.0.39",
+        "laravel-vue-pagination": "^2.3.1",
+        "sweetalert2": "^11.1.4",
+        "vue-sidebar-menu": "^5.1.2",
+        "@johmun/vue-tags-input": "^2.1.0"
+
     }
 }

@@ -13,6 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', [App\Http\Controllers\MainController::class, 'index']);
+
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('{path}', [App\Http\Controllers\HomeController::class, 'index'])->where( 'path', "([A-z\d\-\/_.]+)?" );
