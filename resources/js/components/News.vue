@@ -18,8 +18,8 @@
                     <tr>
                       <th>ID</th>
                       <th>Headline</th>
-                      <th>Photo</th>
                       <th>Details</th>
+                      <th>Photo</th>
                       <th>Modify</th>
                     </tr>
                   </thead>
@@ -27,9 +27,9 @@
                     <tr data-widget="expandable-table" aria-expanded="false"
                         v-for="item in news.data" :key="item.id">
                       <td>{{item.id}}</td>
-                      <td>{{item.headline}}</td>
+                      <td>{{item.headline | truncate(30,'...')}}</td>
+                      <td>{{item.details | truncate(30,'...')}}</td>  
                       <td>{{item.photo}}</td>
-                      <td>{{item.details}}</td>                     
                       <td>
                           <a href="#" @click = "editModal(item)">
                               <i class="fa fa-edit blue"></i>

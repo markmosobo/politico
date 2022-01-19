@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row mt-3">
           <div class="col-12">
-            <div class="card">
+            <div class="card collapsed-card">
               <div class="card-header">
                 <h3 class="card-title">About</h3>
 
@@ -10,6 +10,9 @@
                 <div class="card-tools">
                        <button type="button" class="btn btn-primary"
                         @click = "moreaboutModal">Add More Info <i class="fas fa-clipboard"></i></button>   
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                <i class="fas fa-plus"></i>
+                            </button>                        
                 </div>
               </div>
               <!-- /.card-header -->
@@ -25,18 +28,15 @@
                   </thead>
                   <tbody>
                     <tr v-for="item in about.data" :key="item.id">
-                      <td>{{item.mission}}</td>
-                      <td>{{item.introduction}}</td>
-                      <td>{{item.media}}</td>
+                      <td>{{item.mission | truncate(30,'...')}}</td>
+                      <td>{{item.introduction | truncate(30,'...')}}</td>
+                      <td>{{item.media | truncate(30,'...')}}</td>
                       <td>
+                          <a href="#" @click = "previewModal(item.id)">
+                              <i class="fa fa-eye green"></i>
+                          </a>                        
                           <a href="#" @click = "editModal(item)">
                               <i class="fa fa-edit blue"></i>
-                          </a>
-                          <a href="#" @click = "previewModal(item.id)">
-                              <i class="fa fa-upload green"></i>
-                          </a>
-                          <a href="#" @click = "deleteAbout(item.id)">
-                              <i class="fa fa-trash red"></i>
                           </a>
                       </td> 
                     </tr>
@@ -72,15 +72,15 @@
                   <tbody>
                     <tr v-for="item in moreabout.data" :key="item.id">
                       <td>{{item.id}}</td>
-                      <td>{{item.attribute}}</td>
-                      <td>{{item.description}}</td>
+                      <td>{{item.attribute | truncate(30,'...')}}</td>
+                      <td>{{item.description | truncate(30,'...')}}</td>
                       <td>{{item.photo}}</td>
                       <td>
-                          <a href="#" @click = "editmoreaboutModal(item)">
-                              <i class="fa fa-edit blue"></i>
-                          </a>
                           <a href="#" @click = "previewmoreaboutModal(item.id)">
                               <i class="fa fa-eye green"></i>
+                          </a>                        
+                          <a href="#" @click = "editmoreaboutModal(item)">
+                              <i class="fa fa-edit blue"></i>
                           </a>
                           <a href="#" @click = "deleteMoreAbout(item.id)">
                               <i class="fa fa-trash red"></i>
@@ -239,6 +239,8 @@
                     mission : '',
                     introduction : '',
                     media : '',
+                    attribute: '',
+                    description :'',
                     tags: []
                 }),
                 tag: '',
@@ -392,7 +394,7 @@
                     'More about has been updated.',
                     'success'
                     )
-                    Fire.$emit('Refresh');
+                    Fire.$emit('RefreshMoreAbout');
                   })
                   .catch(() => {
                     this.$Progress.fail();
@@ -408,7 +410,7 @@
                       icon: 'success',
                       title: 'More about created successfully'
                       })
-                  Fire.$emit('Refresh');      
+                  Fire.$emit('RefreshMoreAbout');      
                   })
                   .catch(() => {
                   this.$Progress.fail(); 
@@ -435,7 +437,7 @@
                     'More about has been deleted.',
                     'success'
                   )
-                  Fire.$emit('Refresh');
+                  Fire.$emit('RefreshMoreAbout');
                   }).catch(() => {
                   this.$Progress.fail();  
                     Swal.fire(
@@ -469,7 +471,10 @@
             this.loadMoreAbout();
             Fire.$on('Refresh',() => {
             this.loadAbout();
-            })
+            });
+            Fire.$on('RefreshMoreAbout',() => {
+            this.loadMoreAbout();
+            });            
         },
         filters: {
           truncate: function(text,length, suffix) {

@@ -2334,6 +2334,8 @@ __webpack_require__.r(__webpack_exports__);
         mission: '',
         introduction: '',
         media: '',
+        attribute: '',
+        description: '',
         tags: []
       }),
       tag: '',
@@ -2482,7 +2484,7 @@ __webpack_require__.r(__webpack_exports__);
         _this6.$Progress.finish();
 
         Swal.fire('Updated!', 'More about has been updated.', 'success');
-        Fire.$emit('Refresh');
+        Fire.$emit('RefreshMoreAbout');
       })["catch"](function () {
         _this6.$Progress.fail();
       });
@@ -2500,7 +2502,7 @@ __webpack_require__.r(__webpack_exports__);
           icon: 'success',
           title: 'More about created successfully'
         });
-        Fire.$emit('Refresh');
+        Fire.$emit('RefreshMoreAbout');
       })["catch"](function () {
         _this7.$Progress.fail();
 
@@ -2526,7 +2528,7 @@ __webpack_require__.r(__webpack_exports__);
             _this8.$Progress.finish();
 
             Swal.fire('Deleted!', 'More about has been deleted.', 'success');
-            Fire.$emit('Refresh');
+            Fire.$emit('RefreshMoreAbout');
           })["catch"](function () {
             _this8.$Progress.fail();
 
@@ -2575,6 +2577,9 @@ __webpack_require__.r(__webpack_exports__);
     this.loadMoreAbout();
     Fire.$on('Refresh', function () {
       _this12.loadAbout();
+    });
+    Fire.$on('RefreshMoreAbout', function () {
+      _this12.loadMoreAbout();
     });
   },
   filters: {
@@ -66278,7 +66283,7 @@ var render = function () {
   return _c("div", { staticClass: "container" }, [
     _c("div", { staticClass: "row mt-3" }, [
       _c("div", { staticClass: "col-12" }, [
-        _c("div", { staticClass: "card" }, [
+        _c("div", { staticClass: "card collapsed-card" }, [
           _c("div", { staticClass: "card-header" }, [
             _c("h3", { staticClass: "card-title" }, [_vm._v("About")]),
             _vm._v(" "),
@@ -66295,24 +66300,49 @@ var render = function () {
                   _c("i", { staticClass: "fas fa-clipboard" }),
                 ]
               ),
+              _vm._v(" "),
+              _vm._m(0),
             ]),
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "card-body table-responsive p-0" }, [
             _c("table", { staticClass: "table table-hover text-nowrap" }, [
-              _vm._m(0),
+              _vm._m(1),
               _vm._v(" "),
               _c(
                 "tbody",
                 _vm._l(_vm.about.data, function (item) {
                   return _c("tr", { key: item.id }, [
-                    _c("td", [_vm._v(_vm._s(item.mission))]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(item.introduction))]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(item.media))]),
+                    _c("td", [
+                      _vm._v(
+                        _vm._s(_vm._f("truncate")(item.mission, 30, "..."))
+                      ),
+                    ]),
                     _vm._v(" "),
                     _c("td", [
+                      _vm._v(
+                        _vm._s(_vm._f("truncate")(item.introduction, 30, "..."))
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(_vm._s(_vm._f("truncate")(item.media, 30, "..."))),
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "#" },
+                          on: {
+                            click: function ($event) {
+                              return _vm.previewModal(item.id)
+                            },
+                          },
+                        },
+                        [_c("i", { staticClass: "fa fa-eye green" })]
+                      ),
+                      _vm._v(" "),
                       _c(
                         "a",
                         {
@@ -66324,32 +66354,6 @@ var render = function () {
                           },
                         },
                         [_c("i", { staticClass: "fa fa-edit blue" })]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "a",
-                        {
-                          attrs: { href: "#" },
-                          on: {
-                            click: function ($event) {
-                              return _vm.previewModal(item.id)
-                            },
-                          },
-                        },
-                        [_c("i", { staticClass: "fa fa-upload green" })]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "a",
-                        {
-                          attrs: { href: "#" },
-                          on: {
-                            click: function ($event) {
-                              return _vm.deleteAbout(item.id)
-                            },
-                          },
-                        },
-                        [_c("i", { staticClass: "fa fa-trash red" })]
                       ),
                     ]),
                   ])
@@ -66365,11 +66369,11 @@ var render = function () {
     _c("div", { staticClass: "row mt-3" }, [
       _c("div", { staticClass: "col-12" }, [
         _c("div", { staticClass: "card" }, [
-          _vm._m(1),
+          _vm._m(2),
           _vm._v(" "),
           _c("div", { staticClass: "card-body table-responsive p-0" }, [
             _c("table", { staticClass: "table table-hover text-nowrap" }, [
-              _vm._m(2),
+              _vm._m(3),
               _vm._v(" "),
               _c(
                 "tbody",
@@ -66377,26 +66381,21 @@ var render = function () {
                   return _c("tr", { key: item.id }, [
                     _c("td", [_vm._v(_vm._s(item.id))]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(item.attribute))]),
+                    _c("td", [
+                      _vm._v(
+                        _vm._s(_vm._f("truncate")(item.attribute, 30, "..."))
+                      ),
+                    ]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(item.description))]),
+                    _c("td", [
+                      _vm._v(
+                        _vm._s(_vm._f("truncate")(item.description, 30, "..."))
+                      ),
+                    ]),
                     _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(item.photo))]),
                     _vm._v(" "),
                     _c("td", [
-                      _c(
-                        "a",
-                        {
-                          attrs: { href: "#" },
-                          on: {
-                            click: function ($event) {
-                              return _vm.editmoreaboutModal(item)
-                            },
-                          },
-                        },
-                        [_c("i", { staticClass: "fa fa-edit blue" })]
-                      ),
-                      _vm._v(" "),
                       _c(
                         "a",
                         {
@@ -66408,6 +66407,19 @@ var render = function () {
                           },
                         },
                         [_c("i", { staticClass: "fa fa-eye green" })]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "#" },
+                          on: {
+                            click: function ($event) {
+                              return _vm.editmoreaboutModal(item)
+                            },
+                          },
+                        },
+                        [_c("i", { staticClass: "fa fa-edit blue" })]
                       ),
                       _vm._v(" "),
                       _c(
@@ -66508,7 +66520,7 @@ var render = function () {
                       ]
                     ),
                     _vm._v(" "),
-                    _vm._m(3),
+                    _vm._m(4),
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "modal-body" }, [
@@ -66730,7 +66742,7 @@ var render = function () {
                       ]
                     ),
                     _vm._v(" "),
-                    _vm._m(4),
+                    _vm._m(5),
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "modal-body" }, [
@@ -66917,6 +66929,19 @@ var render = function () {
   ])
 }
 var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass: "btn btn-tool",
+        attrs: { type: "button", "data-card-widget": "collapse" },
+      },
+      [_c("i", { staticClass: "fas fa-plus" })]
+    )
+  },
   function () {
     var _vm = this
     var _h = _vm.$createElement
@@ -69486,11 +69511,19 @@ var render = function () {
                       [
                         _c("td", [_vm._v(_vm._s(item.id))]),
                         _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(item.headline))]),
+                        _c("td", [
+                          _vm._v(
+                            _vm._s(_vm._f("truncate")(item.headline, 30, "..."))
+                          ),
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _vm._v(
+                            _vm._s(_vm._f("truncate")(item.details, 30, "..."))
+                          ),
+                        ]),
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(item.photo))]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(item.details))]),
                         _vm._v(" "),
                         _c("td", [
                           _c(
@@ -69840,9 +69873,9 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Headline")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Photo")]),
-        _vm._v(" "),
         _c("th", [_vm._v("Details")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Photo")]),
         _vm._v(" "),
         _c("th", [_vm._v("Modify")]),
       ]),
@@ -69983,9 +70016,15 @@ var render = function () {
                   return _c("tr", { key: item.id }, [
                     _c("td", [_vm._v(_vm._s(item.id))]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(item.title))]),
+                    _c("td", [
+                      _vm._v(_vm._s(_vm._f("truncate")(item.title, 30, "..."))),
+                    ]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(item.tagline))]),
+                    _c("td", [
+                      _vm._v(
+                        _vm._s(_vm._f("truncate")(item.tagline, 30, "..."))
+                      ),
+                    ]),
                     _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(item.photo))]),
                     _vm._v(" "),

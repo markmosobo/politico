@@ -26,8 +26,8 @@
                   <tbody>
                     <tr v-for="item in slides.data" :key="item.id">
                       <td>{{item.id}}</td>
-                      <td>{{item.title}}</td>
-                      <td>{{item.tagline}}</td>
+                      <td>{{item.title | truncate(30,'...')}}</td>
+                      <td>{{item.tagline | truncate(30,'...')}}</td>
                       <td>{{item.photo}}</td>
                       <td>
                           <a href="#" @click = "editModal(item)">
