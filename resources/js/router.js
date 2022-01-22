@@ -8,6 +8,7 @@ export default
     { path: '/slides', component: require('./components/Slides.vue').default },
     { path: '/issue', component: require('./components/Issues.vue').default },
     { path: '/biography', component: require('./components/Biography.vue').default },
+    { path: '/photo', component: require('./components/Photos.vue').default },
     { path: '/home', component: require('./components/Dashboard.vue').default },
     // { path: '*', component: require('./components/NotFound.vue').default }
 

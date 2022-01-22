@@ -41,7 +41,7 @@ class MpesaController extends Controller
             'Amount' => 5,
             'PartyA' => 254728858889, // replace this with your phone number
             'PartyB' => 174379,
-            'PhoneNumber' => 254790659917, // replace this with your phone number
+            'PhoneNumber' => 254796984737, // replace this with your phone number
             'CallBackURL' => 'https://mydomain.com/path',
             'AccountReference' => "CompanyXLTD",
             'TransactionDesc' => "Payment of X"
@@ -62,7 +62,7 @@ class MpesaController extends Controller
         $url = "https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials";
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $url);
-        curl_setopt($curl, CURLOPT_HTTPHEADER, array("Authorization: Basic ".$credentials));
+        curl_setopt($curl, CURLOPT_HTTPHEADER, array("Authorization: Bearer ".$credentials));
         curl_setopt($curl, CURLOPT_HEADER,false);
         curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);

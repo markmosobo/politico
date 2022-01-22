@@ -150,7 +150,7 @@ __ez.queue.addFunc("attach_ezolpl", "attach_ezolpl", ["d5167543-c10d-4519-5222-a
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="/"><img src="images/logo.jpg" alt="image"/></a>
+                    <a class="navbar-brand" href="/"><img src="images/logo2.png" alt="image"/></a>
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
@@ -169,39 +169,18 @@ __ez.queue.addFunc("attach_ezolpl", "attach_ezolpl", ["d5167543-c10d-4519-5222-a
     </header>
 	
 	<div id="main-banner" class="banner-one" data-scroll-index="0">
-		<div data-src="uploads/slide-4.jpg">
+        @foreach($slides as $slide)
+		<div data-src="uploads/{{$slide->photo}}">
 			<div class="camera_caption">
 				<div class="container">
-					<h1 class="wow fadeInUp animated">Education is key to our future</h1>
-					<p class="wow fadeInUp animated" data-wow-delay="0.2s">Education is the passport to the future, for tommorow
-                        belongs to those who prepare for it today.
+					<h1 class="wow fadeInUp animated">{{$slide->title}}</h1>
+					<p class="wow fadeInUp animated" data-wow-delay="0.2s">{{$slide->tagline}}
                     </p>
 					<a data-scroll="" href="#donate" class="btn btn-light btn-radius btn-brd grd1">CONTRIBUTE</a>
 				</div> <!-- /.container -->
 			</div> <!-- /.camera_caption -->
 		</div>
-		<div data-src="uploads/slide-4.png">
-			<div class="camera_caption">
-				<div class="container">
-					<h1 class="wow fadeInUp animated">The mother of democracy #MamaNiMmoja</h1>
-					<p class="wow fadeInUp animated" data-wow-delay="0.2s">She is credited with having courageously fought for the
-                        increase of democractic space in Mumias.
-                    </p>
-					<a data-scroll="" href="#donate" class="btn btn-light btn-radius btn-brd grd1">CONTRIBUTE</a>
-				</div> <!-- /.container -->
-			</div> <!-- /.camera_caption -->
-		</div>
-		<div data-src="uploads/slide-3.jpg">
-			<div class="camera_caption">
-				<div class="container">
-					<h1 class="wow fadeInUp animated">Building Bridges #Initiative</h1>
-					<p class="wow fadeInUp animated" data-wow-delay="0.2s">Building Bridges to a auNited Kenya from a 
-                        nation of blood ties to a nation of ideal.
-                    </p>
-					<a data-scroll="" href="#donate" class="btn btn-light btn-radius btn-brd grd1">CONTRIBUTE</a>
-				</div> <!-- /.container -->
-			</div> <!-- /.camera_caption -->
-		</div>
+        @endforeach
 	</div> <!-- /#theme-main-banner -->
 
 
@@ -304,6 +283,7 @@ __ez.queue.addFunc("attach_ezolpl", "attach_ezolpl", ["d5167543-c10d-4519-5222-a
         </div><!-- end container -->
     </div><!-- end section -->
 
+    @if($events != null)
     <div id="event" data-scroll-index="3" class="section wb">
         <div class="container">
             <div class="section-title text-center">
@@ -337,7 +317,7 @@ __ez.queue.addFunc("attach_ezolpl", "attach_ezolpl", ["d5167543-c10d-4519-5222-a
             </div><!-- end row -->
         </div><!-- end container -->
     </div><!-- end section -->
-
+    @endif
 	
 	<div id="gallery" data-scroll-index="4" class="section lb">
 		<div class="container">
@@ -349,73 +329,84 @@ __ez.queue.addFunc("attach_ezolpl", "attach_ezolpl", ["d5167543-c10d-4519-5222-a
 			<div class="gallery-menu row">
 				<div class="col-md-12">
 					<div class="button-group filter-button-group text-center">
-						<button class="active" data-filter="*">All</button>
+						<button class="active" data-filter=".gal_0">All</button>
 						<button data-filter=".gal_a">Meeting</button>
 						<button data-filter=".gal_b">Event</button>
-						<button data-filter=".gal_c">Economic</button>
-						<button data-filter=".gal_d">Education</button>
+						<button data-filter=".gal_c">Politics</button>
+						<button data-filter=".gal_d">Agenda</button>
 					</div>
 				</div>
 			</div>
 			
 			<div class="gallery-list row">
-				<div class="col-md-4 col-sm-6 gallery-grid gal_a gal_b">
+                @foreach($photos as $photo)
+                @if(count($photos))
+				<div class="col-md-4 col-sm-6 gallery-grid gal_0">
 					<div class="gallery-single fix">
-						<img src="uploads/gallery_img-01.jpg" class="img-responsive" alt="Image"/>
+						<img src="uploads/{{$photo->photo}}" class="img-responsive" alt="Image"/>
 						<div class="img-overlay">
-							<a href="uploads/gallery_img-01.jpg" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="flaticon-unlink"></i></a>
+							<a href="uploads/{{$photo->photo}}" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="flaticon-unlink"></i></a>
 						</div>
 					</div>
 				</div>
+                @endif
+                @endforeach
 				
-				<div class="col-md-4 col-sm-6 gallery-grid gal_c gal_b">
+                @foreach($photos as $photo)
+                @if($photo->category == 'Meeting')
+				<div class="col-md-4 col-sm-6 gallery-grid gal_a">
 					<div class="gallery-single fix">
-						<img src="uploads/gallery_img-02.jpg" class="img-responsive" alt="Image"/>
+						<img src="uploads/{{$photo->photo}}" class="img-responsive" alt="Image"/>
 						<div class="img-overlay">
-							<a href="uploads/gallery_img-02.jpg" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="flaticon-unlink"></i></a>
+							<a href="uploads/{{$photo->photo}}" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="flaticon-unlink"></i></a>
 						</div>
 					</div>
 				</div>
+                @endif
+				@endforeach
+
+                @foreach($photos as $photo)
+                @if($photo->category == 'Event')
+				<div class="col-md-4 col-sm-6 gallery-grid gal_b">
+					<div class="gallery-single fix">
+						<img src="uploads/{{$photo->photo}}" class="img-responsive" alt="Image"/>
+						<div class="img-overlay">
+							<a href="uploads/{{$photo->photo}}" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="flaticon-unlink"></i></a>
+						</div>
+					</div>
+				</div>
+				@endif
+                @endforeach
+
+                @foreach($photos as $photo)
+                @if($photo->category == 'Politics')
+				<div class="col-md-4 col-sm-6 gallery-grid gal_c">
+					<div class="gallery-single fix">
+						<img src="uploads/{{$photo->photo}}" class="img-responsive" alt="Image"/>
+						<div class="img-overlay">
+							<a href="uploads/{{$photo->photo}}" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="flaticon-unlink"></i></a>
+						</div>
+					</div>
+				</div>
+				@endif
+                @endforeach
+
+                @foreach($photos as $photo)
+                @if($photo->category == 'Agenda')
+				<div class="col-md-4 col-sm-6 gallery-grid gal_d">
+					<div class="gallery-single fix">
+						<img src="uploads/{{$photo->photo}}" class="img-responsive" alt="Image"/>
+						<div class="img-overlay">
+							<a href="uploads/{{$photo->photo}}" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="flaticon-unlink"></i></a>
+						</div>
+					</div>
+				</div>
+                @endif
+                @endforeach
 				
-				<div class="col-md-4 col-sm-6 gallery-grid gal_a gal_c">
-					<div class="gallery-single fix">
-						<img src="uploads/gallery_img-03.jpg" class="img-responsive" alt="Image"/>
-						<div class="img-overlay">
-							<a href="uploads/gallery_img-03.jpg" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="flaticon-unlink"></i></a>
-						</div>
-					</div>
-				</div>
-				
-				<div class="col-md-4 col-sm-6 gallery-grid gal_b gal_a">
-					<div class="gallery-single fix">
-						<img src="uploads/gallery_img-04.jpg" class="img-responsive" alt="Image"/>
-						<div class="img-overlay">
-							<a href="uploads/gallery_img-04.jpg" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="flaticon-unlink"></i></a>
-						</div>
-					</div>
-				</div>
-				
-				<div class="col-md-4 col-sm-6 gallery-grid gal_a gal_c">
-					<div class="gallery-single fix">
-						<img src="uploads/gallery_img-05.jpg" class="img-responsive" alt="Image"/>
-						<div class="img-overlay">
-							<a href="uploads/gallery_img-05.jpg" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="flaticon-unlink"></i></a>
-						</div>
-					</div>
-				</div>
-				
-				<div class="col-md-4 col-sm-6 gallery-grid gal_c gal_d">
-					<div class="gallery-single fix">
-						<img src="uploads/gallery_img-06.jpg" class="img-responsive" alt="Image"/>
-						<div class="img-overlay">
-							<a href="uploads/gallery_img-06.jpg" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="flaticon-unlink"></i></a>
-						</div>
-					</div>
-				</div>
 			</div>
 			</div>
 		</div>
-	
 	
     
         <div id="media" data-scroll-index="5" class="section wb">

@@ -17,7 +17,7 @@ class CreateMoreAboutsTable extends Migration
             $table->increments('id');
             $table->string('attribute')->nullable();
             $table->string('photo')->nullable();
-            $table->string('description')->nullable();
+            $table->longText('description')->nullable();
             $table->string('tags')->nullable();
             $table->timestamps();
             $table->softDeletes();

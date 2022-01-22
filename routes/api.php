@@ -28,7 +28,8 @@ Route::apiResources([
     'moreabout' => API\MoreAboutController::class,
     'biography' => API\BiographyController::class,
     'issue' => API\IssueController::class,
-    'pledge' => API\PledgeController::class
+    'pledge' => API\PledgeController::class,
+    'photo' => API\PhotoController::class
 ]);
 Route::get('tags',[API\TagController::class,'list']);
 Route::get('event/{id}',[API\EventController::class,'previewEvent']);
