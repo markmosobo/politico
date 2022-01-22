@@ -455,7 +455,7 @@ __ez.queue.addFunc("attach_ezolpl", "attach_ezolpl", ["d5167543-c10d-4519-5222-a
                 <div class="col-md-12">
                     <div class="contact_form">
                         <div id="message"></div>
-                        <form id="contactform" class="row" action="https://html.design/demo/elpolitic/contact.php" name="contactform" method="post">
+                        <form id="contactform" class="row" @submit="pushSTK()">
                             <fieldset class="row-fluid">
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                     <input type="text" name="first_name" id="first_name" class="form-control" placeholder="First Name"/>
@@ -534,6 +534,19 @@ __ez.queue.addFunc("attach_ezolpl", "attach_ezolpl", ["d5167543-c10d-4519-5222-a
     <!-- ALL PLUGINS -->
     <script src="js/custom.js"></script>
     <script src="js/jquery.vide.js"></script>
+    <script>
+        methods:{
+            data(){
+                return{
+                    about: {}
+                }
+            }
+            pushSTK(){
+                axios.post('api/v1/hlab/stk/push').then(({data}) => (this.about = data));
+            }
+        }
+
+    </script>
 
 
 <include id="includedContent"></include>

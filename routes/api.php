@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API;
+use App\Http\Controllers\MpesaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,3 +31,8 @@ Route::apiResources([
     'pledge' => API\PledgeController::class
 ]);
 Route::get('tags',[API\TagController::class,'list']);
+Route::get('event/{id}',[API\EventController::class,'previewEvent']);
+Route::post('v1/access/token', [MpesaController::class,'generateAccessToken']);
+Route::post('v1/hlab/stk/push', [MpesaController::class,'customerMpesaSTKPush']);
+Route::post('v1/hlab/validation', [MpesaController::class,'mpesaValidation']);
+Route::post('v1/hlab/transaction/confirmation', [MpesaController::class,'mpesaConfirmation']);

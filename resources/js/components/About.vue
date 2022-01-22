@@ -241,7 +241,8 @@
                     media : '',
                     attribute: '',
                     description :'',
-                    tags: []
+                    photo: '',
+                    tags: [],
                 }),
                 tag: '',
                 autocompleteItems: [],                  

@@ -24,8 +24,15 @@ class EventController extends Controller
      */
     public function index()
     {
-        $events = Event::latest()->paginate(10);
+        $events = Event::latest()->paginate(3);
         return response()->json($events);
+    }
+
+    public function previewEvent(Request $request,$id)
+    {
+        $event = Event::findOrFail($id);
+        $previewevent = Event::where('id',$event->id)->paginate(1);
+        return response()->json($previewevent);
     }
 
     /**

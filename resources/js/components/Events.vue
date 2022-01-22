@@ -33,11 +33,11 @@
                       <td>{{item.venue}}</td>
                       <td>{{item.details | truncate(30,'...')}}</td>                     
                       <td>
+                          <a href="#" @click = "previewModal(item.id)">
+                              <i class="fa fa-eye green"></i>
+                          </a>                        
                           <a href="#" @click = "editModal(item)">
                               <i class="fa fa-edit blue"></i>
-                          </a>
-                          <a href="#" @click = "previewModal(item.id)">
-                              <i class="fa fa-upload green"></i>
                           </a>
                           <a href="#" @click = "deleteEvent(item.id)">
                               <i class="fa fa-trash red"></i>
@@ -177,36 +177,34 @@
                         </button>
                     </div>
                     <div class="modal-body">
-            
-                        <div class="card-header">
-                            <h3 class="card-title">{{this.eventpreview}}</h3>
-
-                        </div>
+                      <table class="table table-hover">
+                        <tbody>
+                        <tr v-for="event in eventpreview" :key="event.id">
                         <!-- /.card-header -->
                         <div class="card-body p-0">
                             <ul class="products-list product-list-in-card pl-2 pr-2">
                             <li class="item">                                
                                 <div class="product-info">
                                 <a href="javascript:void(0)" class="product-title float-right">
-                                    Name</a>
+                                    {{event.title}}</a>
                                 </div>
                             </li>
                             <li class="item">
                                 <div class="product-info">
-                                <a href="javascript:void(0)" class="product-title">Doctor Charge
+                                <a href="javascript:void(0)" class="product-title">Date
                                     <span class="badge badge-warning float-right">Ksh500</span></a>
                                 </div>
                             </li>
                             <li class="item">
                                 <div class="product-info">
-                                <a href="javascript:void(0)" class="product-title">Lab Chargebill
+                                <a href="javascript:void(0)" class="product-title">Venue
                                     <span class="badge badge-info float-right">Ksh700</span></a>
                                 </div>
                             </li>
                             <li class="item">
                                 <div class="product-info">
                                 <a href="javascript:void(0)" class="product-title">
-                                    Room Charge <span class="badge badge-danger float-right">
+                                    Duration <span class="badge badge-danger float-right">
                                     Ksh350
                                 </span>
                                 </a>
@@ -214,27 +212,29 @@
                             </li>
                             <li class="item">
                                 <div class="product-info">
-                                <a href="javascript:void(0)" class="product-title">No of Days
+                                <a href="javascript:void(0)" class="product-title">Category
                                     <span class="badge badge-success float-right">6</span></a>
                                 </div>
                             </li>
                             <li class="item">
                                 <div class="product-info">
-                                <a href="javascript:void(0)" class="product-title">Total Bill
+                                <a href="javascript:void(0)" class="product-title">Details
                                     <span class="badge badge-info float-right">Ksh7000</span></a>
                                 </div>
                             </li>                            
                             </ul>
                         </div>
                         <!-- /.card-body -->
-
+                        </tr>
+                        </tbody>
+                      </table> 
                     </div>
                     <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                     </div>
                 </div>
                 </div>
-            </div>        
+            </div>         
         <!--end of preview modal -->        
 </div>
 </template>
@@ -299,8 +299,8 @@
                   this.form.fill(item);  
               },
               previewModal(id){
-                  axios.get('api/event/'+id).then((response) =>
-                   {this.eventpreview = response.data.data});
+                  axios.get('api/event/'+id).then(({data}) =>
+                   {this.eventpreview = data});
 
                    $('#myModal').modal('show')
               },              

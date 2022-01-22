@@ -2336,6 +2336,7 @@ __webpack_require__.r(__webpack_exports__);
         media: '',
         attribute: '',
         description: '',
+        photo: '',
         tags: []
       }),
       tag: '',
@@ -3427,8 +3428,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     previewModal: function previewModal(id) {
       var _this3 = this;
 
-      axios.get('api/event/' + id).then(function (response) {
-        _this3.eventpreview = response.data.data;
+      axios.get('api/event/' + id).then(function (_ref2) {
+        var data = _ref2.data;
+        _this3.eventpreview = data;
       });
       $('#myModal').modal('show');
     },
@@ -3500,8 +3502,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     loadEvents: function loadEvents() {
       var _this7 = this;
 
-      axios.get('api/event').then(function (_ref2) {
-        var data = _ref2.data;
+      axios.get('api/event').then(function (_ref3) {
+        var data = _ref3.data;
         return _this7.events = data;
       });
     },
@@ -67859,11 +67861,11 @@ var render = function () {
                               attrs: { href: "#" },
                               on: {
                                 click: function ($event) {
-                                  return _vm.editModal(item)
+                                  return _vm.previewModal(item.id)
                                 },
                               },
                             },
-                            [_c("i", { staticClass: "fa fa-edit blue" })]
+                            [_c("i", { staticClass: "fa fa-eye green" })]
                           ),
                           _vm._v(" "),
                           _c(
@@ -67872,11 +67874,11 @@ var render = function () {
                               attrs: { href: "#" },
                               on: {
                                 click: function ($event) {
-                                  return _vm.previewModal(item.id)
+                                  return _vm.editModal(item)
                                 },
                               },
                             },
-                            [_c("i", { staticClass: "fa fa-upload green" })]
+                            [_c("i", { staticClass: "fa fa-edit blue" })]
                           ),
                           _vm._v(" "),
                           _c(
@@ -68369,16 +68371,57 @@ var render = function () {
             _vm._m(3),
             _vm._v(" "),
             _c("div", { staticClass: "modal-body" }, [
-              _c("div", { staticClass: "card-header" }, [
-                _c("h3", { staticClass: "card-title" }, [
-                  _vm._v(_vm._s(this.eventpreview)),
-                ]),
+              _c("table", { staticClass: "table table-hover" }, [
+                _c(
+                  "tbody",
+                  _vm._l(_vm.eventpreview, function (event) {
+                    return _c("tr", { key: event.id }, [
+                      _c("div", { staticClass: "card-body p-0" }, [
+                        _c(
+                          "ul",
+                          {
+                            staticClass:
+                              "products-list product-list-in-card pl-2 pr-2",
+                          },
+                          [
+                            _c("li", { staticClass: "item" }, [
+                              _c("div", { staticClass: "product-info" }, [
+                                _c(
+                                  "a",
+                                  {
+                                    staticClass: "product-title float-right",
+                                    attrs: { href: "javascript:void(0)" },
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                                    " +
+                                        _vm._s(event.title)
+                                    ),
+                                  ]
+                                ),
+                              ]),
+                            ]),
+                            _vm._v(" "),
+                            _vm._m(4, true),
+                            _vm._v(" "),
+                            _vm._m(5, true),
+                            _vm._v(" "),
+                            _vm._m(6, true),
+                            _vm._v(" "),
+                            _vm._m(7, true),
+                            _vm._v(" "),
+                            _vm._m(8, true),
+                          ]
+                        ),
+                      ]),
+                    ])
+                  }),
+                  0
+                ),
               ]),
-              _vm._v(" "),
-              _vm._m(4),
             ]),
             _vm._v(" "),
-            _vm._m(5),
+            _vm._m(9),
           ]),
         ]),
       ]
@@ -68470,127 +68513,112 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-body p-0" }, [
-      _c(
-        "ul",
-        { staticClass: "products-list product-list-in-card pl-2 pr-2" },
-        [
-          _c("li", { staticClass: "item" }, [
-            _c("div", { staticClass: "product-info" }, [
-              _c(
-                "a",
-                {
-                  staticClass: "product-title float-right",
-                  attrs: { href: "javascript:void(0)" },
-                },
-                [_vm._v("\n                                    Name")]
+    return _c("li", { staticClass: "item" }, [
+      _c("div", { staticClass: "product-info" }, [
+        _c(
+          "a",
+          {
+            staticClass: "product-title",
+            attrs: { href: "javascript:void(0)" },
+          },
+          [
+            _vm._v("Date\n                                    "),
+            _c("span", { staticClass: "badge badge-warning float-right" }, [
+              _vm._v("Ksh500"),
+            ]),
+          ]
+        ),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "item" }, [
+      _c("div", { staticClass: "product-info" }, [
+        _c(
+          "a",
+          {
+            staticClass: "product-title",
+            attrs: { href: "javascript:void(0)" },
+          },
+          [
+            _vm._v("Venue\n                                    "),
+            _c("span", { staticClass: "badge badge-info float-right" }, [
+              _vm._v("Ksh700"),
+            ]),
+          ]
+        ),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "item" }, [
+      _c("div", { staticClass: "product-info" }, [
+        _c(
+          "a",
+          {
+            staticClass: "product-title",
+            attrs: { href: "javascript:void(0)" },
+          },
+          [
+            _vm._v("\n                                    Duration "),
+            _c("span", { staticClass: "badge badge-danger float-right" }, [
+              _vm._v(
+                "\n                                    Ksh350\n                                "
               ),
             ]),
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "item" }, [
-            _c("div", { staticClass: "product-info" }, [
-              _c(
-                "a",
-                {
-                  staticClass: "product-title",
-                  attrs: { href: "javascript:void(0)" },
-                },
-                [
-                  _vm._v("Doctor Charge\n                                    "),
-                  _c(
-                    "span",
-                    { staticClass: "badge badge-warning float-right" },
-                    [_vm._v("Ksh500")]
-                  ),
-                ]
-              ),
+          ]
+        ),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "item" }, [
+      _c("div", { staticClass: "product-info" }, [
+        _c(
+          "a",
+          {
+            staticClass: "product-title",
+            attrs: { href: "javascript:void(0)" },
+          },
+          [
+            _vm._v("Category\n                                    "),
+            _c("span", { staticClass: "badge badge-success float-right" }, [
+              _vm._v("6"),
             ]),
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "item" }, [
-            _c("div", { staticClass: "product-info" }, [
-              _c(
-                "a",
-                {
-                  staticClass: "product-title",
-                  attrs: { href: "javascript:void(0)" },
-                },
-                [
-                  _vm._v(
-                    "Lab Chargebill\n                                    "
-                  ),
-                  _c("span", { staticClass: "badge badge-info float-right" }, [
-                    _vm._v("Ksh700"),
-                  ]),
-                ]
-              ),
+          ]
+        ),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "item" }, [
+      _c("div", { staticClass: "product-info" }, [
+        _c(
+          "a",
+          {
+            staticClass: "product-title",
+            attrs: { href: "javascript:void(0)" },
+          },
+          [
+            _vm._v("Details\n                                    "),
+            _c("span", { staticClass: "badge badge-info float-right" }, [
+              _vm._v("Ksh7000"),
             ]),
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "item" }, [
-            _c("div", { staticClass: "product-info" }, [
-              _c(
-                "a",
-                {
-                  staticClass: "product-title",
-                  attrs: { href: "javascript:void(0)" },
-                },
-                [
-                  _vm._v("\n                                    Room Charge "),
-                  _c(
-                    "span",
-                    { staticClass: "badge badge-danger float-right" },
-                    [
-                      _vm._v(
-                        "\n                                    Ksh350\n                                "
-                      ),
-                    ]
-                  ),
-                ]
-              ),
-            ]),
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "item" }, [
-            _c("div", { staticClass: "product-info" }, [
-              _c(
-                "a",
-                {
-                  staticClass: "product-title",
-                  attrs: { href: "javascript:void(0)" },
-                },
-                [
-                  _vm._v("No of Days\n                                    "),
-                  _c(
-                    "span",
-                    { staticClass: "badge badge-success float-right" },
-                    [_vm._v("6")]
-                  ),
-                ]
-              ),
-            ]),
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "item" }, [
-            _c("div", { staticClass: "product-info" }, [
-              _c(
-                "a",
-                {
-                  staticClass: "product-title",
-                  attrs: { href: "javascript:void(0)" },
-                },
-                [
-                  _vm._v("Total Bill\n                                    "),
-                  _c("span", { staticClass: "badge badge-info float-right" }, [
-                    _vm._v("Ksh7000"),
-                  ]),
-                ]
-              ),
-            ]),
-          ]),
-        ]
-      ),
+          ]
+        ),
+      ]),
     ])
   },
   function () {

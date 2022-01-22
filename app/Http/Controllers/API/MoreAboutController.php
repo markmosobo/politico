@@ -128,7 +128,7 @@ class MoreAboutController extends Controller
         $currentImage = $moreabout->photo;
 
         if($request->photo != $currentImage){
-            $name = time().'.'.explode('/',explode(':', substr($request->image, 0, strpos
+            $name = time().'.'.explode('/',explode(':', substr($request->photo, 0, strpos
             ($request->photo, ';')))[1])[1];
         \Image::make($request->photo)->save(public_path('uploads/').$name);
             $request->merge(['image' => $name]);
