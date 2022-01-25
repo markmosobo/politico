@@ -262,7 +262,7 @@ __ez.queue.addFunc("attach_ezolpl", "attach_ezolpl", ["d5167543-c10d-4519-5222-a
 				<div class="col-md-5">
                     <div class="issuse-wrap2 clearfix">
                         <img src="uploads/{{$pleg->photo}}" alt="" class="img-responsive img-rounded"/>
-                        <h4>{{$pleg->pledge}}</h4>
+                        <h4>"{{$pleg->pledge}}"</h4>
                         <p>{{$pleg->details}}</p>
                     </div><!-- end issue -->
                     <a href="#issues" data-scroll="" class="btn btn-light btn-radius btn-brd grd1">Download Manifesto</a>
@@ -274,7 +274,7 @@ __ez.queue.addFunc("attach_ezolpl", "attach_ezolpl", ["d5167543-c10d-4519-5222-a
                     @foreach($issues as $issue)
                     <div class="issuse-wrap clearfix">
                         <img src="uploads/{{$issue->photo}}" alt="" class="img-responsive img-rounded alignleft"/>
-                        <h4>{{$issue->name}}</h4>
+                        <h4 style="text-transform:uppercase;">{{$issue->name}}</h4>
                         <p>{{$issue->details}}</p>
                     </div><!-- end issue -->
                     @endforeach
@@ -463,15 +463,15 @@ __ez.queue.addFunc("attach_ezolpl", "attach_ezolpl", ["d5167543-c10d-4519-5222-a
                                 <!-- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                     <label class="sr-only">Select Service</label>
                                     <select name="select_service" id="select_service" class="selectpicker form-control" data-style="btn-white">
-                                        <option value="12">Donate For?</option>
-                                        <option value="Political Parties">Political Parties</option>
+                                        <option value="12">Contribute For?</option>
+                                        <option value="Political Party">Political Party</option>
                                         <option value="For Politician">For Politician</option>
                                         <option value="Others">Others</option>
                                     </select>
                                 </div> -->
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <input type="text" name="amount" id="amount" class="form-control" placeholder="Amount"/>
-                                </div> -->
+                                </div> 
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <textarea class="form-control" name="comments" id="comments" rows="6" placeholder="Why you are contributing?(optional)"></textarea>
                                 </div>
