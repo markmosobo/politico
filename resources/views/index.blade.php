@@ -137,7 +137,9 @@ __ez.queue.addFunc("attach_ezolpl", "attach_ezolpl", ["d5167543-c10d-4519-5222-a
     <!-- END LOADER -->
 
     <div class="topbar text-center hidden-xs">
-        <p>This site uses cookies. By continuing to browse ELPolitic, you are agreeing to use our site cookies. <a href="#">Find out more here &gt;</a></p>
+        <p>This site uses cookies. By continuing to browse {{config('app.name')}}, you are agreeing to use our site cookies.
+             <!-- <a href="#">Find out more here &gt;</a> -->
+            </p>
     </div>
 
     <header class="header header_style_01">
@@ -494,8 +496,10 @@ __ez.queue.addFunc("attach_ezolpl", "attach_ezolpl", ["d5167543-c10d-4519-5222-a
                         <a href="#">Biography</a>
                         <a href="#">Contact Us</a>
                     </p>
-                    <p class="footer-company-name">All Rights Reserved. © 2018 <a href="#">{{config('app.name')}}</a> Design By : 
-					<a href="#" title="Bluewave Company">Bluewave Company Limited</a></p>
+                    <p class="footer-company-name">All Rights Reserved. © 2022 <a href="#">{{config('app.name')}}</a> 
+                    <!-- Design By : 
+					<a href="#" title="Bluewave Company">Bluewave Company Limited</a> -->
+                    </p>
                 </div>
 
                 <div class="footer-right">
