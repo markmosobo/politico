@@ -448,19 +448,19 @@ __ez.queue.addFunc("attach_ezolpl", "attach_ezolpl", ["d5167543-c10d-4519-5222-a
                         <div id="message"></div>
                         <form id="contactform" class="row" @submit="pushSTK()">
                             <fieldset class="row-fluid">
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <!-- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                     <input type="text" name="first_name" id="first_name" class="form-control" placeholder="First Name"/>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                     <input type="text" name="last_name" id="last_name" class="form-control" placeholder="Last Name"/>
-                                </div>
+                                </div> -->
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                     <input type="email" name="email" id="email" class="form-control" placeholder="Your Email"/>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                     <input type="text" name="phone" id="phone" class="form-control" placeholder="Your Phone"/>
                                 </div>
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <!-- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                     <label class="sr-only">Select Service</label>
                                     <select name="select_service" id="select_service" class="selectpicker form-control" data-style="btn-white">
                                         <option value="12">Donate For?</option>
@@ -468,17 +468,12 @@ __ez.queue.addFunc("attach_ezolpl", "attach_ezolpl", ["d5167543-c10d-4519-5222-a
                                         <option value="For Politician">For Politician</option>
                                         <option value="Others">Others</option>
                                     </select>
-                                </div>
+                                </div> -->
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                    <label class="sr-only">What is max price?</label>
-                                    <select name="select_price" id="select_price" class="selectpicker form-control" data-style="btn-white">
-                                        <option value="$100 - $2000">$10 - $100</option>
-                                        <option value="$2000 - $4000">$100 - $1000</option>
-                                        <option value="$4000 - $10000">$1000 - $10000</option>
-                                    </select>
-                                </div>
+                                    <input type="text" name="amount" id="amount" class="form-control" placeholder="Amount"/>
+                                </div> -->
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <textarea class="form-control" name="comments" id="comments" rows="6" placeholder="Why you are donate us?"></textarea>
+                                    <textarea class="form-control" name="comments" id="comments" rows="6" placeholder="Why you are contributing?(optional)"></textarea>
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 text-center">
                                     <button type="submit" value="SEND" id="submit" class="btn btn-light btn-radius btn-brd grd1 btn-block">Pay Now via MPESA</button>
