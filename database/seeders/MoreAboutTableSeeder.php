@@ -15,20 +15,25 @@ class MoreAboutTableSeeder extends Seeder
     public function run()
     {
         MoreAbout::create([
-            'attribute' => 'Mother of Democracy',
-            'description' => 'Jack is the founder of Mumias Dairy Farming, the first of its kind in Mumias sunb county.',
+            'attribute' => 'Reliable',
+            'description' => 'Her service as Kakamega County Branch secretary under ANC 
+             has been a success.This led to her nomination to the county aseembly. This happened despite
+             being short-changed in the ODM primaries.',
             'photo' => '1642879083.png'
         ]);
 
         MoreAbout::create([
-            'attribute' => 'True Leader',
-            'description' => 'There is no denying that the leadership qualities exhibited during her tenure as Women Rep are central to public acclaim.',
-            'photo' => '1642879018.jpeg'
+            'attribute' => 'Transparent',
+            'description' => 'We have a leadership that does not operate with manifestos.
+             We want the electorate to be included in what I am doing and work with community
+              health volunteers to make sure preventive health care is well managed.',
+            'photo' => '1642879083.png'
         ]);
 
         MoreAbout::create([
-            'attribute' => 'Committed & Passionate',
-            'description' => 'Her warmth to children can be shown with her support for various Childrens Homes',
+            'attribute' => 'Competent',
+            'description' => 'She has a wide experience in the finance sector and public relations given her tenure at Faulu Kenya and Kenya Women Finance
+            Trust where she discharged her duties as a financial advisor and asessed businesses that can be financed.',
             'photo' => '1642879083.png'
         ]);
     }
