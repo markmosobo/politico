@@ -219,7 +219,7 @@ __ez.queue.addFunc("attach_ezolpl", "attach_ezolpl", ["d5167543-c10d-4519-5222-a
             <span>Know more about</span>
                 <h3>{{config('app.name')}}</h3>
                 <p class="lead">Hon. {{config('app.name')}} graduated from Masinde Muliro University of Science and Technology (MMUST) with a Bachelor of
-                     Science(Business Management). She worked as a business development officer (BDO) at Kenya Women Finance Trust (KWFT)
+                     Science(Business Management). She worked as a Business Development Officer (BDO) at Kenya Women Finance Trust (KWFT)
                       and later took charge of Western Region as a Financial Advisor for Faulu where she learnt about mobilization of women,
                       training them and capacity to assess business that can be financed. Currently in the county assembly she is the vice chairperson of the catering and health club committee
                     , a member of the health and sanitation committee and also member of the public service and administration 
