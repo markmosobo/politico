@@ -18,7 +18,7 @@ class MainController extends Controller
     {
         $events = Event::latest()->take(3)->get();
         $abouts = About::latest()->take(1)->get();
-        $moreabouts = MoreAbout::latest()->take(3)->get();
+        $moreabouts = MoreAbout::latest()->with('tags')->take(3)->get();
         $news = News::latest()->paginate(3);
         $pledge = Pledge::latest()->paginate(1);
         $issues = Issue::latest()->paginate(4);

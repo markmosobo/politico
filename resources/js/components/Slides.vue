@@ -30,11 +30,11 @@
                       <td>{{item.tagline | truncate(30,'...')}}</td>
                       <td>{{item.photo}}</td>
                       <td>
+                          <a href="#" @click = "previewModal(item.id)">
+                              <i class="fa fa-eye green"></i>
+                          </a>                        
                           <a href="#" @click = "editModal(item)">
                               <i class="fa fa-edit blue"></i>
-                          </a>
-                          <a href="#" @click = "previewModal(item.id)">
-                              <i class="fa fa-upload green"></i>
                           </a>
                           <a href="#" @click = "deleteSlide(item.id)">
                               <i class="fa fa-trash red"></i>

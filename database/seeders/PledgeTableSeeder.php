@@ -15,14 +15,11 @@ class PledgeTableSeeder extends Seeder
     public function run()
     {
         Pledge::create([
-            'pledge' => 'I aspire to provide quality leadership and utmost integrity.
-             I continuously strives to elevate Kenyan’s faith, and to fill our country
-              Kenya with justice.',
-            'details' => 'Integer rutrum ligula eu dignissim laoreet. Pellentesque
-             venenatis nibh sed tellus faucibus bibendum. Sed fermentum est vitae rhoncus
-              molestie. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-               Sed vitae rutrum neque. Ut id erat sit amet libero bibendum aliquam. Donec ac egestas libero,
-                eu bibendum risus. Phasellus et congue justo.',
+            'pledge' => 'I also seek to improve existing businesses and encourage mentorship of the youth, thus building a sustainable community;
+            one that does not depend on hand-outs.',
+            'details' => 'In order to improve sustainability to Mumias constituents, I plan to boost existing businesses and youth
+            empowerment. Empowering communities through trainings and enabling them to have their own businesses through provision of 
+            grants.',
             'photo' => 'slide-4.png',   
             'slug' => 'https://www.youtube.com/watch?v=0BHKw0nyIiA&ab_channel=LUHYAHERITAGE%26CULTURE'    
         ]);        

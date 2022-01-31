@@ -12,7 +12,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
-  <title>{{config('app.name')}} | Laravel-Vue Application</title>
+  <title>{{config('app.name')}} | Dashboard</title>
 
 <link rel="stylesheet" href="{{mix('css/app.css')}}">
 </head>
@@ -48,8 +48,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
-      <img src="images/logo.png" alt="Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+    <a href="/home" class="brand-link">
+      <img src="images/logos/logo2.png" alt="Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">{{config('app.name')}}</span>
     </a>
 

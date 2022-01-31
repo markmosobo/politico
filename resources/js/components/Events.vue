@@ -94,14 +94,14 @@
 
                             <div class="form-group">
                             <label>Category</label>
-                                    <select class="form-control" v-model="form.category_id">
-                                      <option value="">Select Category</option>
-                                      <option 
-                                          v-for="item in categories" :key="item.id"
-                                          :value="item.id"
-                                          :selected="item.id == form.category_id">{{ item.name }}</option>
+                                    <select v-model="form.category" id="category"
+                                    name="category" class="form-control">
+                                    <option value="">Select Category</option>
+                                    <option value="Rally">Rally</option>
+                                    <option value="Meeting">Meeting</option>
+                                    <option value="AGM">AGM</option>
                                     </select>
-                                    <div v-if="form.errors.has('category_id')" v-html="form.errors.get('category_id')" />
+                                    <div v-if="form.errors.has('category')" v-html="form.errors.get('category')" />
                             </div>
 
                             <div class="form-group">

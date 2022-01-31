@@ -37,7 +37,7 @@ class PledgeController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'pledge' => 'required|string|max:191',
+            'pledge' => 'required|string',
             'details' => 'required|string'
         ]);
 
@@ -92,7 +92,7 @@ class PledgeController extends Controller
         $pledge = Pledge::findOrFail($id);
 
         $this->validate($request,[
-            'pledge' => 'required|string|max:191',
+            'pledge' => 'required|string',
             'details' => 'required|string'
         ]);
 

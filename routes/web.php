@@ -14,7 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [App\Http\Controllers\MainController::class, 'index']);
-
+// Route::get('contribute',[App\Http\Controllers\ContributionController::class,'contribute'])->name('form.contribute');
+// Route::post('contribute',[App\Http\Controllers\ContributionController::class,'postContribution']);
 
 Auth::routes();
 

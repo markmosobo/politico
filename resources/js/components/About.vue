@@ -282,7 +282,7 @@
               previewModal(id){
 
               },              
-              updateSlide(){
+              updateAbout(){
                   this.$Progress.start();
                   this.form.put('api/about/'+this.form.id)
                   .then(() => {

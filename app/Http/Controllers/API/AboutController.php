@@ -16,7 +16,7 @@ class AboutController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'mission' => 'required|integer',
+            'mission' => 'required|string',
             'introduction' => 'required|string|max:255'
         ]);
 
@@ -32,7 +32,7 @@ class AboutController extends Controller
         $about = About::findOrFail($id);
 
         $this->validate($request,[
-            'mission' => 'required|integer',
+            'mission' => 'required|string',
             'introduction' => 'required|string|max:255'
         ]);
         

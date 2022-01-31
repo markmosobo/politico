@@ -15,27 +15,30 @@ class IssuesTableSeeder extends Seeder
     public function run()
     {
         Issue::create([
-            'name' => 'Comprehensive Youth Program',
-            'details' => 'Etiam materials ut mollis tellus, vel posuere nulla. Etiam sit amet lacus vitae massa sodales aliquam at eget quam. Integer ultricies et magna quis.',
+            'name' => 'Youth Empowerment',
+            'details' => 'Encourage the youth through mentorship to start their own businesses, start ups thus building a
+            sustainable constituency.',
+            'photo' => '1642880276.jpeg'
+        ]);
+
+        Issue::create([
+            'name' => 'Poverty',
+            'details' => 'Through provision of grants to start ups and businesses, I can address the issue of poverty
+            in our constituency.',
             'photo' => '1642880195.jpeg'
         ]);
 
         Issue::create([
-            'name' => 'Economic Opportunity',
-            'details' => 'Etiam materials ut mollis tellus, vel posuere nulla. Etiam sit amet lacus vitae massa sodales aliquam at eget quam. Integer ultricies et magna quis.',
+            'name' => 'Early child marriages',
+            'details' => 'I aspire to help in fighting teenage pregancies and teenage mothers have been on the rise in the constituency.',
             'photo' => '1642880276.jpeg'
         ]);
 
         Issue::create([
             'name' => 'Health Care',
-            'details' => 'Etiam materials ut mollis tellus, vel posuere nulla. Etiam sit amet lacus vitae massa sodales aliquam at eget quam. Integer ultricies et magna quis.',
+            'details' => 'Working with community health volunteers to make sure that preventive health care is well managed.',
             'photo' => '1642880195.jpeg'
         ]);
 
-        Issue::create([
-            'name' => 'Climate Change',
-            'details' => 'Etiam materials ut mollis tellus, vel posuere nulla. Etiam sit amet lacus vitae massa sodales aliquam at eget quam. Integer ultricies et magna quis.',
-            'photo' => '1642880374.jpeg'
-        ]);
     }
 }

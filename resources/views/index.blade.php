@@ -218,8 +218,13 @@ __ez.queue.addFunc("attach_ezolpl", "attach_ezolpl", ["d5167543-c10d-4519-5222-a
 			<div class="section-title text-center">
             <span>Know more about</span>
                 <h3>Mother of Democracy</h3>
-                <p class="lead">{{config('app.name')}} is flatteringly referred to as the “mama ni Mmoja”. She is one of the few politicians in the country who are loved and loathed in equal measures. .<br/>
-                There is no doubt that Jackie is the most capable and influential politician in Mumias and the region.</p>
+                <p class="lead">Hon. {{config('app.name')}} graduated from Masinde Muliro University of Science and Technology (MMUST) with a Bachelor of
+                     Science(Business Management). She worked as a business development officer (BDO) at Kenya Women Finance Trust (KWFT)
+                      and later took charge of Western Region as a Financial Advisor for Faulu where she learnt about mobilization of women,
+                      training them and capacity to assess business that can be financed. Currently in the county assembly she is the vice chairperson of the catering and health club committee
+                    , a member of the health and sanitation committee and also member of the public service and administration 
+                    committee.
+                </p>
             </div>
 			
 			<div class="row">
@@ -229,7 +234,7 @@ __ez.queue.addFunc("attach_ezolpl", "attach_ezolpl", ["d5167543-c10d-4519-5222-a
 						<div class="post-thumb">
 							<img src="uploads/{{$about->photo}}" class="img-responsive" alt="post-img"/>
 							<div class="date">
-								<span>{{$about->tags}}</span>
+								<span>{{$about->text}}</span>
 							</div>
 						</div>
 						<div class="post-info">
@@ -256,7 +261,7 @@ __ez.queue.addFunc("attach_ezolpl", "attach_ezolpl", ["d5167543-c10d-4519-5222-a
         <div class="container">
             <div class="section-title text-left">
                 <h3>Issues &amp; Plans</h3>
-                <p class="lead">{{config('app.name')}} has a well-laid out manifesto regarding her developemnt agenda within Mumias constituency.<br/> Her key areas to address are clearly outlined.</p>
+                <p class="lead">{{config('app.name')}} has a well-laid out plan regarding her political agenda within Mumias West constituency.<br/> Her key areas to address are clearly outlined.</p>
             </div><!-- end title -->
 
             <div class="row">
@@ -267,8 +272,6 @@ __ez.queue.addFunc("attach_ezolpl", "attach_ezolpl", ["d5167543-c10d-4519-5222-a
                         <h4>"{{$pleg->pledge}}"</h4>
                         <p>{{$pleg->details}}</p>
                     </div><!-- end issue -->
-                    <a href="#issues" data-scroll="" class="btn btn-light btn-radius btn-brd grd1">Download Manifesto</a>
-
                 </div>
                 @endforeach
                 <!-- end col -->
@@ -290,14 +293,16 @@ __ez.queue.addFunc("attach_ezolpl", "attach_ezolpl", ["d5167543-c10d-4519-5222-a
         <div class="container">
             <div class="section-title text-center">
                 <h3>Latest Events</h3>
-                <p class="lead">Quisque eget nisl id nulla sagittis auctor quis id. Aliquam quis vehicula enim, non aliquam risus.<br/> Sed a tellus quis mi rhoncus dignissim.</p>
+                <p class="lead">Follow Hon. {{config('app.name')}} as she embarks on the journey to bettering her community.
+                </br> Stay updated on the upcoming or latest events. 
+                </p>
             </div><!-- end title -->
 
             <div class="row">
                 @foreach($events as $event)
                 <div class="col-md-4">
                     <div class="participate-wrap">
-                        <small>Technology</small>
+                        <small>{{$event->category}}</small>
 						<figure>
 							<img src="uploads/{{$event->photo}}" alt="" class="img-responsive"/>
 							<figcaption><a href="#" class="global-radius"> <i class="flaticon-unlink"></i> </a></figcaption>
@@ -325,7 +330,8 @@ __ez.queue.addFunc("attach_ezolpl", "attach_ezolpl", ["d5167543-c10d-4519-5222-a
 		<div class="container">
 			<div class="section-title text-center">
                 <h3>Gallery</h3>
-                <p class="lead">Quisque eget nisl id nulla sagittis auctor quis id. Aliquam quis vehicula enim, non aliquam risus.<br/> Sed a tellus quis mi rhoncus dignissim.</p>
+                <p class="lead">Wish to join our political cause? Take a virtual tour now, <br/> 
+                See for yourself.</p>
             </div>
 			
 			<div class="gallery-menu row">
@@ -415,7 +421,7 @@ __ez.queue.addFunc("attach_ezolpl", "attach_ezolpl", ["d5167543-c10d-4519-5222-a
         <div class="container">
             <div class="section-title text-center">
                 <h3>News & Media</h3>
-                <p class="lead">Quisque eget nisl id nulla sagittis auctor quis id. Aliquam quis vehicula enim, non aliquam risus.<br/> Sed a tellus quis mi rhoncus dignissim.</p>
+                <p class="lead">Together we can be involved in the coming Elections in August 2022 .<br/> Tujiandikishe leo.</p>
             </div>
 
             <div class="row">
@@ -441,14 +447,15 @@ __ez.queue.addFunc("attach_ezolpl", "attach_ezolpl", ["d5167543-c10d-4519-5222-a
         <div class="container">
             <div class="section-title text-center">
                 <h3>Contribute</h3>
-                <p class="lead">Quisque eget nisl id nulla sagittis auctor quis id. Aliquam quis vehicula enim, non aliquam risus.<br/> Sed a tellus quis mi rhoncus dignissim.</p>
+                <p class="lead">If you believe in our mission, help us change our community.<br/> Be part of the change.</p>
             </div><!-- end title -->
 
             <div class="row">
                 <div class="col-md-12">
                     <div class="contact_form">
                         <div id="message"></div>
-                        <form id="contactform" class="row" @submit="pushSTK()">
+                        <form id="contactform" class="row">
+                        {{csrf_field()}}
                             <fieldset class="row-fluid">
                                 <!-- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                     <input type="text" name="first_name" id="first_name" class="form-control" placeholder="First Name"/>
@@ -460,25 +467,24 @@ __ez.queue.addFunc("attach_ezolpl", "attach_ezolpl", ["d5167543-c10d-4519-5222-a
                                     <input type="email" name="email" id="email" class="form-control" placeholder="Your Email"/>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                    <input type="text" name="phone" id="phone" class="form-control" placeholder="Your Phone"/>
+                                    <input type="text" name="phone_number" id="phone" class="form-control" placeholder="Your Phone"/>
                                 </div>
-                                <!-- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                     <label class="sr-only">Select Service</label>
-                                    <select name="select_service" id="select_service" class="selectpicker form-control" data-style="btn-white">
+                                    <select name="recepient" id="select_service" class="selectpicker form-control" data-style="btn-white">
                                         <option value="12">Contribute For?</option>
+                                        <option value="For Politician">For {{config('app.name')}}</option>
                                         <option value="Political Party">Political Party</option>
-                                        <option value="For Politician">For Politician</option>
-                                        <option value="Others">Others</option>
                                     </select>
-                                </div> -->
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                     <input type="text" name="amount" id="amount" class="form-control" placeholder="Amount"/>
                                 </div> 
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <textarea class="form-control" name="comments" id="comments" rows="6" placeholder="Why you are contributing?(optional)"></textarea>
+                                    <textarea class="form-control" name="reason" id="comments" rows="6" placeholder="Why you are contributing?(optional)"></textarea>
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 text-center">
-                                    <button type="submit" value="SEND" id="submit" class="btn btn-light btn-radius btn-brd grd1 btn-block">Pay Now via MPESA</button>
+                                    <button type="submit" id="submit" class="btn btn-light btn-radius btn-brd grd1 btn-block">Pay Now via MPESA</button>
                                 </div>
                             </fieldset>
                         </form>
@@ -540,11 +546,11 @@ __ez.queue.addFunc("attach_ezolpl", "attach_ezolpl", ["d5167543-c10d-4519-5222-a
 
 
 <include id="includedContent"></include>
-  <script>
+  <!-- <script>
   $(function(){
       $("#includedContent").load("https://html.design/demo/htmlads.html"); 
     });
-  </script>
+  </script> -->
 
  
 <script type='text/javascript' style='display:none;' async>

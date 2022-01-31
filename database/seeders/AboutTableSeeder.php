@@ -15,14 +15,11 @@ class AboutTableSeeder extends Seeder
     public function run()
     {
         About::create([
-            'mission' => 'I aspire to provide quality leadership and utmost integrity.
-             I continuously strives to elevate Kenyan’s faith, and to fill our country
-              Kenya with justice.',
-            'introduction' => 'Integer rutrum ligula eu dignissim laoreet. Pellentesque
-             venenatis nibh sed tellus faucibus bibendum. Sed fermentum est vitae rhoncus
-              molestie. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-               Sed vitae rutrum neque. Ut id erat sit amet libero bibendum aliquam. Donec ac egestas libero,
-                eu bibendum risus. Phasellus et congue justo.',
+            'mission' => 'My goal is to help alleviate poverty within the constituents
+                         and promote accountable and inclusive leadership.To address poverty, I intend to empower communities
+                         through trainings that enable them have start ups through grants.',
+            'introduction' => 'Hon. Jackline Mwakha Okanya seeks to be the MP for Mumias West Constituency and is currently the
+                                nominated MCA of Kakamega County Assembly courtesy of a nomination by Amani National Congress (ANC).',
             'media' => 'https://www.youtube.com/watch?v=0BHKw0nyIiA&ab_channel=LUHYAHERITAGE%26CULTURE'    
         ]);        
     }
