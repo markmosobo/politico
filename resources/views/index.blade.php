@@ -137,7 +137,7 @@ __ez.queue.addFunc("attach_ezolpl", "attach_ezolpl", ["d5167543-c10d-4519-5222-a
     <!-- END LOADER -->
 
     <div class="topbar text-center hidden-xs">
-        <p>This site uses cookies. By continuing to browse {{config('app.name')}}, you are agreeing to use our site cookies.
+        <p>Mumias West - MP {{config('app.name')}}.
              <!-- <a href="#">Find out more here &gt;</a> -->
             </p>
     </div>
@@ -158,10 +158,13 @@ __ez.queue.addFunc("attach_ezolpl", "attach_ezolpl", ["d5167543-c10d-4519-5222-a
                     <ul class="nav navbar-nav navbar-right">
                         <li><a data-scroll-nav="0" href="#main-banner" class="active">Home</a></li>
                         <li><a data-scroll-nav="1" href="#about">About</a></li>
-                        <li><a data-scroll-nav="2" href="#issues">Issues</a></li>
+                        <li><a data-scroll-nav="2" href="#issues">Campaign Issues</a></li>
+                        @if($events = null)
+                        @elseif($events != null)
                         <li><a data-scroll-nav="3" href="#event">Events</a></li>
+                        @endif
 						<li><a data-scroll-nav="4" href="#gallery">Gallery</a></li>
-                        <li><a data-scroll-nav="5" href="#media">News</a></li>
+                        <!-- <li><a data-scroll-nav="5" href="#media">News</a></li> -->
 						<!-- <li><a data-scroll-nav="6" href="#blog">Blog</a></li> -->
                         <!-- <li><a data-scroll-nav="7" href="#contact">Contact</a></li> -->
                     </ul>
@@ -231,12 +234,12 @@ __ez.queue.addFunc("attach_ezolpl", "attach_ezolpl", ["d5167543-c10d-4519-5222-a
                 @foreach($moreabouts as $about)
 				<div class="col-md-4 col-sm-6 col-lg-4">
 					<div class="post-box">
-						<div class="post-thumb">
+						<!-- <div class="post-thumb">
 							<img src="uploads/{{$about->photo}}" class="img-responsive" alt="post-img"/>
 							<div class="date">
 								<span>{{$about->text}}</span>
 							</div>
-						</div>
+						</div> -->
 						<div class="post-info">
 							<h4>{{$about->attribute}}</h4>
 
@@ -288,7 +291,8 @@ __ez.queue.addFunc("attach_ezolpl", "attach_ezolpl", ["d5167543-c10d-4519-5222-a
         </div><!-- end container -->
     </div><!-- end section -->
 
-    @if($events != null)
+    @if($events = null)
+    @elseif($events != null)
     <div id="event" data-scroll-index="3" class="section wb">
         <div class="container">
             <div class="section-title text-center">
@@ -417,7 +421,7 @@ __ez.queue.addFunc("attach_ezolpl", "attach_ezolpl", ["d5167543-c10d-4519-5222-a
 		</div>
 	
     
-        <div id="media" data-scroll-index="5" class="section wb">
+        <!-- <div id="media" data-scroll-index="5" class="section wb">
         <div class="container">
             <div class="section-title text-center">
                 <h3>News & Media</h3>
@@ -439,7 +443,8 @@ __ez.queue.addFunc("attach_ezolpl", "attach_ezolpl", ["d5167543-c10d-4519-5222-a
                 @endforeach
             </div>
         </div>
-    </div><!--end section-->
+    </div> -->
+    <!--end section-->
 	
 
 

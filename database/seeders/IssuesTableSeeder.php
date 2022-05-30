@@ -18,14 +18,14 @@ class IssuesTableSeeder extends Seeder
             'name' => 'Youth Empowerment',
             'details' => 'Encourage the youth through mentorship to start their own businesses, start ups thus building a
             sustainable constituency.',
-            'photo' => '1642880276.jpeg'
+            'photo' => '1642880277.jpeg'
         ]);
 
         Issue::create([
-            'name' => 'Poverty',
+            'name' => 'Business Community',
             'details' => 'Through provision of grants to start ups and businesses, I can address the issue of poverty
             in our constituency.',
-            'photo' => '1642880195.jpeg'
+            'photo' => '1642880195.jpg'
         ]);
 
         Issue::create([
@@ -37,7 +37,7 @@ class IssuesTableSeeder extends Seeder
         Issue::create([
             'name' => 'Health Care',
             'details' => 'Working with community health volunteers to make sure that preventive health care is well managed.',
-            'photo' => '1642880195.jpeg'
+            'photo' => '1642880196.jpeg'
         ]);
 
     }
