@@ -17,37 +17,43 @@ class PhotoTableSeeder extends Seeder
         Photo::create([
             'category' => 'Meeting',
             'description' => 'Etiam materials ut mollis tellus, vel posuere nulla. Etiam sit amet lacus vitae massa sodales aliquam at eget quam. Integer ultricies et magna quis.',
-            'photo' => '1642881147.jpeg'
+            'photo' => 'gallery1.jpg'
         ]);
 
         Photo::create([
             'category' => 'Politics',
             'description' => 'Etiam materials ut mollis tellus, vel posuere nulla. Etiam sit amet lacus vitae massa sodales aliquam at eget quam. Integer ultricies et magna quis.',
-            'photo' => '1642881183.jpeg'
+            'photo' => 'gallery3.jpg'
         ]);
 
         Photo::create([
             'category' => 'Agenda',
             'description' => 'Etiam materials ut mollis tellus, vel posuere nulla. Etiam sit amet lacus vitae massa sodales aliquam at eget quam. Integer ultricies et magna quis.',
-            'photo' => '1642881230.jpeg'
+            'photo' => 'gallery6.jpg'
         ]);
 
         Photo::create([
             'category' => 'Event',
             'description' => 'Etiam materials ut mollis tellus, vel posuere nulla. Etiam sit amet lacus vitae massa sodales aliquam at eget quam. Integer ultricies et magna quis.',
-            'photo' => '1642881281.jpeg'
+            'photo' => 'gallery2.jpg'
         ]);
 
         Photo::create([
             'category' => 'Politics',
             'description' => 'Etiam materials ut mollis tellus, vel posuere nulla. Etiam sit amet lacus vitae massa sodales aliquam at eget quam. Integer ultricies et magna quis.',
-            'photo' => '1642881372.jpeg	'
+            'photo' => 'gallery5.jpg	'
+        ]);
+
+        Photo::create([
+            'category' => 'Politics',
+            'description' => 'Etiam materials ut mollis tellus, vel posuere nulla. Etiam sit amet lacus vitae massa sodales aliquam at eget quam. Integer ultricies et magna quis.',
+            'photo' => 'gallery7.jpg	'
         ]);
 
         Photo::create([
             'category' => 'Meeting',
             'description' => 'Etiam materials ut mollis tellus, vel posuere nulla. Etiam sit amet lacus vitae massa sodales aliquam at eget quam. Integer ultricies et magna quis.',
-            'photo' => '1642881414.jpeg'
+            'photo' => 'gallery4.jpg'
         ]);
     }
 }

@@ -50,7 +50,7 @@ return{Add:AddPixel,AddAndFire:AddAndFirePixel,AddAndFireOrig:AddAndFireOrigPixe
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
  
      <!-- Site Metas -->
-    <title>{{config('app.name')}}</title>  
+    <title>MP {{config('app.name')}} - Mumias West Constituency</title>  
     <meta name="keywords" content=""/>
     <meta name="description" content=""/>
     <meta name="author" content=""/>
@@ -195,7 +195,7 @@ __ez.queue.addFunc("attach_ezolpl", "attach_ezolpl", ["d5167543-c10d-4519-5222-a
                 @foreach($abouts as $about)
                 <div class="col-md-6">
                     <div class="message-box">
-                        <h4>Welcome to Jackie Okanya </h4>
+                        <h4>Welcome to {{config('app.name')}}  </h4>
                         <h2>My Mission & Values</h2>
                         <blockquote class="lead">{{$about->mission}}</blockquote>
 
@@ -232,7 +232,7 @@ __ez.queue.addFunc("attach_ezolpl", "attach_ezolpl", ["d5167543-c10d-4519-5222-a
 			
 			<div class="row">
                 @foreach($moreabouts as $about)
-				<div class="col-md-4 col-sm-6 col-lg-4">
+				<div class="col-md-4 col-sm-6 col-lg-4" style="margin-bottom:50px;">
 					<div class="post-box">
 						<!-- <div class="post-thumb">
 							<img src="uploads/{{$about->photo}}" class="img-responsive" alt="post-img"/>
@@ -248,6 +248,60 @@ __ez.queue.addFunc("attach_ezolpl", "attach_ezolpl", ["d5167543-c10d-4519-5222-a
 					</div>
 				</div>
                 @endforeach
+				<div class="col-md-4 col-sm-6 col-lg-4">
+					<div class="post-box">
+						<div class="post-thumb">
+                        <img src="uploads/gallery7.jpg" class="img-responsive" alt="post-img"/>
+							<div class="date">
+								<span>I submit to GOD and YOU my people</span>
+							</div>
+						</div>
+						<div class="post-info">
+							<h4>GOD and Better LEADERSHIP</h4>
+
+							<p>I trust in GOD and strongly hold that he has the answers to our prayers.
+                                 YOU, my people, hold the key to success, you lead the way as I serve you.
+                                  And as long as GOD is on our side, count on success.</p>
+						</div>
+					</div>
+				</div>   
+                
+                <div class="col-md-4 col-sm-6 col-lg-4">
+					<div class="post-box">
+						<div class="post-thumb">
+                        <img src="uploads/gallery7.jpg" class="img-responsive" alt="post-img"/>
+							<div class="date">
+								<span>I submit to GOD and YOU my people</span>
+							</div>
+						</div>
+						<div class="post-info">
+							<h4>Together We Can Do More</h4>
+
+							<p>Working together creates a tenfold energy; synergy. Working together
+                                 taps into positive energy with spar our growth. We generate better
+                                  ideas together, we plan better together, we accomplish projects better
+                                   together, and we celebrate success better together.</p>
+						</div>
+					</div>
+				</div>   
+
+                <div class="col-md-4 col-sm-6 col-lg-4">
+					<div class="post-box">
+						<div class="post-thumb">
+							<img src="uploads/gallery7.jpg" class="img-responsive" alt="post-img"/>
+							<div class="date">
+								<span>I submit to GOD and YOU my people</span>
+							</div>
+						</div>
+						<div class="post-info">
+							<h4>GOD and Better LEADERSHIP</h4>
+
+							<p>I trust in GOD and strongly hold that he has the answers to our prayers.
+                                 YOU, my people, hold the key to success, you lead the way as I serve you.
+                                  And as long as GOD is on our side, count on success.</p>
+						</div>
+					</div>
+				</div>   
 			</div>
 			
 		</div>
@@ -343,8 +397,8 @@ __ez.queue.addFunc("attach_ezolpl", "attach_ezolpl", ["d5167543-c10d-4519-5222-a
 					<div class="button-group filter-button-group text-center">
 						<button class="active" data-filter=".gal_0">All</button>
 						<button data-filter=".gal_a">Meeting</button>
-						<button data-filter=".gal_b">Event</button>
-						<button data-filter=".gal_c">Politics</button>
+						<button data-filter=".gal_b">Events</button>
+						<button data-filter=".gal_c">Campaign</button>
 						<button data-filter=".gal_d">Agenda</button>
 					</div>
 				</div>
@@ -468,7 +522,7 @@ __ez.queue.addFunc("attach_ezolpl", "attach_ezolpl", ["d5167543-c10d-4519-5222-a
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                     <input type="text" name="last_name" id="last_name" class="form-control" placeholder="Last Name"/>
                                 </div> -->
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <!-- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                     <input type="email" name="email" id="email" class="form-control" placeholder="Your Email"/>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -484,12 +538,15 @@ __ez.queue.addFunc("attach_ezolpl", "attach_ezolpl", ["d5167543-c10d-4519-5222-a
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                     <input type="text" name="amount" id="amount" class="form-control" placeholder="Amount"/>
-                                </div> 
+                                </div>  -->
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <textarea class="form-control" name="reason" id="comments" rows="6" placeholder="Why you are contributing?(optional)"></textarea>
+                                    <textarea class="form-control" readonly="readonly" name="reason" id="comments" rows="6" placeholder="Why you are contributing?(optional)">
+                                        Campaign Account No. Paybill 222111
+                                        Family Bank Mumias Branch Account No. 081000025848 
+                                    </textarea>
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 text-center">
-                                    <button type="submit" id="submit" class="btn btn-light btn-radius btn-brd grd1 btn-block">Pay Now via MPESA</button>
+                                    <button class="btn btn-light btn-radius btn-brd grd1 btn-block">'Mama Power' - #IpoSiku</button>
                                 </div>
                             </fieldset>
                         </form>
@@ -504,20 +561,21 @@ __ez.queue.addFunc("attach_ezolpl", "attach_ezolpl", ["d5167543-c10d-4519-5222-a
             <div class="footer-distributed">
                 <div class="footer-left">
                     <p class="footer-links">
-                        <a href="#">Biography</a>
+                        <a href="#main-banner">Home</a>
                         <a href="#">Contact Us</a>
                     </p>
-                    <p class="footer-company-name">All Rights Reserved. © 2022 <a href="#">{{config('app.name')}}</a> 
+                    <p class="footer-company-name">All Rights Reserved. © 2022 <a href="#">MP {{config('app.name')}}</a> 
                     <!-- Design By : 
 					<a href="#" title="Bluewave Company">Bluewave Company Limited</a> -->
                     </p>
                 </div>
 
                 <div class="footer-right">
-                    <form method="get" action="#">
+                    <!-- <form method="get" action="#">
                         <input placeholder="Subscribe our newsletter.." name="search"/>
                         <i class="fa fa-envelope-o"></i>
-                    </form>
+                    </form> -->
+                    <p class="footer-company-name">Powered by MP {{config('app.name')}}.</p>
                 </div>
             </div>
         </div><!-- end container -->
