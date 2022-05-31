@@ -288,7 +288,7 @@ __ez.queue.addFunc("attach_ezolpl", "attach_ezolpl", ["d5167543-c10d-4519-5222-a
                 <div class="col-md-4 col-sm-6 col-lg-4">
 					<div class="post-box">
 						<div class="post-thumb">
-							<img src="uploads/all.jpg" class="img-responsive" alt="post-img"/>
+							<img src="uploads/all(copy).jpg" class="img-responsive" alt="post-img"/>
 							<div class="date">
 								<span>Inclusivity</span>
 							</div>
