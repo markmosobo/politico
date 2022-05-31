@@ -207,7 +207,7 @@ __ez.queue.addFunc("attach_ezolpl", "attach_ezolpl", ["d5167543-c10d-4519-5222-a
 
                 <div class="col-md-6">
                     <div class="post-media wow fadeIn">
-                        <img src="uploads/slide-4.png" alt="" class="img-responsive img-rounded"/>
+                        <img src="uploads/MP project.png" alt="" class="img-responsive img-rounded"/>
                         <a href="{{$about->media}}" data-rel="prettyPhoto[gal]" class="playbutton"><i class="flaticon-play-button"></i></a>
                     </div><!-- end media -->
                 </div><!-- end col -->

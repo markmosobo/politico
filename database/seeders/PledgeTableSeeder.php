@@ -20,7 +20,7 @@ class PledgeTableSeeder extends Seeder
             'details' => 'In order to improve sustainability to Mumias constituents, I plan to boost existing businesses and youth
             empowerment. Empowering communities through trainings and enabling them to have their own businesses through provision of 
             grants.',
-            'photo' => 'slide-4.png',   
+            'photo' => 'MP project.png',   
             'slug' => 'https://www.youtube.com/watch?v=0BHKw0nyIiA&ab_channel=LUHYAHERITAGE%26CULTURE'    
         ]);        
     }
