@@ -137,7 +137,7 @@ __ez.queue.addFunc("attach_ezolpl", "attach_ezolpl", ["d5167543-c10d-4519-5222-a
     <!-- END LOADER -->
 
     <div class="topbar text-center hidden-xs">
-        <p>Mumias West - MP {{config('app.name')}}.
+        <p>Mumias West Constituency - MP {{config('app.name')}}.
              <!-- <a href="#">Find out more here &gt;</a> -->
             </p>
     </div>
@@ -164,7 +164,10 @@ __ez.queue.addFunc("attach_ezolpl", "attach_ezolpl", ["d5167543-c10d-4519-5222-a
                         <li><a data-scroll-nav="3" href="#event">Events</a></li>
                         @endif
 						<li><a data-scroll-nav="4" href="#gallery">Gallery</a></li>
-                        <!-- <li><a data-scroll-nav="5" href="#media">News</a></li> -->
+                        @if($news = null)
+                        @elseif($news != null)
+                        <li><a data-scroll-nav="5" href="#media">News</a></li>
+                        @endif
 						<!-- <li><a data-scroll-nav="6" href="#blog">Blog</a></li> -->
                         <!-- <li><a data-scroll-nav="7" href="#contact">Contact</a></li> -->
                     </ul>
@@ -251,9 +254,9 @@ __ez.queue.addFunc("attach_ezolpl", "attach_ezolpl", ["d5167543-c10d-4519-5222-a
 				<div class="col-md-4 col-sm-6 col-lg-4">
 					<div class="post-box">
 						<div class="post-thumb">
-                        <img src="uploads/gallery7.jpg" class="img-responsive" alt="post-img"/>
+                        <img src="uploads/church.jpg" class="img-responsive" alt="post-img"/>
 							<div class="date">
-								<span>I submit to GOD and YOU my people</span>
+								<span>I submit to GOD</span>
 							</div>
 						</div>
 						<div class="post-info">
@@ -288,7 +291,7 @@ __ez.queue.addFunc("attach_ezolpl", "attach_ezolpl", ["d5167543-c10d-4519-5222-a
                 <div class="col-md-4 col-sm-6 col-lg-4">
 					<div class="post-box">
 						<div class="post-thumb">
-							<img src="uploads/all(copy).jpg" class="img-responsive" alt="post-img"/>
+							<img src="uploads/all.jpg" class="img-responsive" alt="post-img"/>
 							<div class="date">
 								<span>Inclusivity</span>
 							</div>
@@ -416,7 +419,7 @@ __ez.queue.addFunc("attach_ezolpl", "attach_ezolpl", ["d5167543-c10d-4519-5222-a
 					<div class="gallery-single fix">
 						<img src="uploads/{{$photo->photo}}" class="img-responsive" alt="Image"/>
 						<div class="img-overlay">
-							<a href="uploads/{{$photo->photo}}" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="flaticon-unlink"></i></a>
+							<a href="uploads/{{$photo->photo}}" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><img src="images/logos/logo.png" alt="image"/></a>
 						</div>
 					</div>
 				</div>
@@ -429,7 +432,7 @@ __ez.queue.addFunc("attach_ezolpl", "attach_ezolpl", ["d5167543-c10d-4519-5222-a
 					<div class="gallery-single fix">
 						<img src="uploads/{{$photo->photo}}" class="img-responsive" alt="Image"/>
 						<div class="img-overlay">
-							<a href="uploads/{{$photo->photo}}" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="flaticon-unlink"></i></a>
+                            <a href="uploads/{{$photo->photo}}" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><img src="images/logos/logo.png" alt="image"/></a>
 						</div>
 					</div>
 				</div>
@@ -442,7 +445,7 @@ __ez.queue.addFunc("attach_ezolpl", "attach_ezolpl", ["d5167543-c10d-4519-5222-a
 					<div class="gallery-single fix">
 						<img src="uploads/{{$photo->photo}}" class="img-responsive" alt="Image"/>
 						<div class="img-overlay">
-							<a href="uploads/{{$photo->photo}}" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="flaticon-unlink"></i></a>
+                            <a href="uploads/{{$photo->photo}}" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><img src="images/logos/logo.png" alt="image"/></a>
 						</div>
 					</div>
 				</div>
@@ -455,7 +458,7 @@ __ez.queue.addFunc("attach_ezolpl", "attach_ezolpl", ["d5167543-c10d-4519-5222-a
 					<div class="gallery-single fix">
 						<img src="uploads/{{$photo->photo}}" class="img-responsive" alt="Image"/>
 						<div class="img-overlay">
-							<a href="uploads/{{$photo->photo}}" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="flaticon-unlink"></i></a>
+                            <a href="uploads/{{$photo->photo}}" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><img src="images/logos/logo.png" alt="image"/></a>
 						</div>
 					</div>
 				</div>
@@ -468,7 +471,7 @@ __ez.queue.addFunc("attach_ezolpl", "attach_ezolpl", ["d5167543-c10d-4519-5222-a
 					<div class="gallery-single fix">
 						<img src="uploads/{{$photo->photo}}" class="img-responsive" alt="Image"/>
 						<div class="img-overlay">
-							<a href="uploads/{{$photo->photo}}" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="flaticon-unlink"></i></a>
+                            <a href="uploads/{{$photo->photo}}" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><img src="images/logos/logo.png" alt="image"/></a>
 						</div>
 					</div>
 				</div>
@@ -479,8 +482,9 @@ __ez.queue.addFunc("attach_ezolpl", "attach_ezolpl", ["d5167543-c10d-4519-5222-a
 			</div>
 		</div>
 	
-    
-        <!-- <div id="media" data-scroll-index="5" class="section wb">
+    @if($news = null)
+    @elseif($news != null)    
+        <div id="media" data-scroll-index="5" class="section wb">
         <div class="container">
             <div class="section-title text-center">
                 <h3>News & Media</h3>
@@ -502,7 +506,8 @@ __ez.queue.addFunc("attach_ezolpl", "attach_ezolpl", ["d5167543-c10d-4519-5222-a
                 @endforeach
             </div>
         </div>
-    </div> -->
+    </div>
+    @endif
     <!--end section-->
 	
 
@@ -598,19 +603,6 @@ __ez.queue.addFunc("attach_ezolpl", "attach_ezolpl", ["d5167543-c10d-4519-5222-a
     <!-- ALL PLUGINS -->
     <script src="js/custom.js"></script>
     <script src="js/jquery.vide.js"></script>
-    <script>
-        methods:{
-            data(){
-                return{
-                    about: {}
-                }
-            }
-            pushSTK(){
-                axios.post('api/v1/hlab/stk/push').then(({data}) => (this.about = data));
-            }
-        }
-
-    </script>
 
 
 <include id="includedContent"></include>
