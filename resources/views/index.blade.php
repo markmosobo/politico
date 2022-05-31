@@ -269,9 +269,9 @@ __ez.queue.addFunc("attach_ezolpl", "attach_ezolpl", ["d5167543-c10d-4519-5222-a
                 <div class="col-md-4 col-sm-6 col-lg-4">
 					<div class="post-box">
 						<div class="post-thumb">
-                        <img src="uploads/gallery7.jpg" class="img-responsive" alt="post-img"/>
+                        <img src="uploads/together.jpg" class="img-responsive" alt="post-img"/>
 							<div class="date">
-								<span>I submit to GOD and YOU my people</span>
+								<span>Pamoja</span>
 							</div>
 						</div>
 						<div class="post-info">
@@ -288,17 +288,16 @@ __ez.queue.addFunc("attach_ezolpl", "attach_ezolpl", ["d5167543-c10d-4519-5222-a
                 <div class="col-md-4 col-sm-6 col-lg-4">
 					<div class="post-box">
 						<div class="post-thumb">
-							<img src="uploads/gallery7.jpg" class="img-responsive" alt="post-img"/>
+							<img src="uploads/all.jpg" class="img-responsive" alt="post-img"/>
 							<div class="date">
-								<span>I submit to GOD and YOU my people</span>
+								<span>Inclusivity</span>
 							</div>
 						</div>
 						<div class="post-info">
-							<h4>GOD and Better LEADERSHIP</h4>
+							<h4>Empowerment</h4>
 
-							<p>I trust in GOD and strongly hold that he has the answers to our prayers.
-                                 YOU, my people, hold the key to success, you lead the way as I serve you.
-                                  And as long as GOD is on our side, count on success.</p>
+							<p>All our youth, women, and men ask for is empowerment. I hear you. Just make your vote count. 
+                                I will ensure all are served equally, East to West, North to South.</p>
 						</div>
 					</div>
 				</div>   
@@ -564,7 +563,7 @@ __ez.queue.addFunc("attach_ezolpl", "attach_ezolpl", ["d5167543-c10d-4519-5222-a
                         <a href="#main-banner">Home</a>
                         <a href="#">Contact Us</a>
                     </p>
-                    <p class="footer-company-name">All Rights Reserved. © 2022 <a href="#">MP {{config('app.name')}}</a> 
+                    <p class="footer-company-name">Copyright. © 2022 <a href="#">MP {{config('app.name')}}</a> 
                     <!-- Design By : 
 					<a href="#" title="Bluewave Company">Bluewave Company Limited</a> -->
                     </p>
