@@ -15,12 +15,12 @@ class PledgeTableSeeder extends Seeder
     public function run()
     {
         Pledge::create([
-            'pledge' => 'I also seek to improve existing businesses and encourage mentorship of the youth, thus building a sustainable community;
+            'pledge' => 'I seek to improve existing businesses and encourage mentorship of the youth, thus building a sustainable community;
             one that does not depend on hand-outs.',
             'details' => 'In order to improve sustainability to Mumias constituents, I plan to boost existing businesses and youth
             empowerment. Empowering communities through trainings and enabling them to have their own businesses through provision of 
             grants.',
-            'photo' => 'MP project.png',   
+            'photo' => 'gallery8.jpg',   
             'slug' => 'https://www.youtube.com/watch?v=0BHKw0nyIiA&ab_channel=LUHYAHERITAGE%26CULTURE'    
         ]);        
     }

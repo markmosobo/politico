@@ -325,13 +325,19 @@ __ez.queue.addFunc("attach_ezolpl", "attach_ezolpl", ["d5167543-c10d-4519-5222-a
 				<div class="col-md-5">
                     <div class="issuse-wrap2 clearfix">
                         <img src="uploads/{{$pleg->photo}}" alt="" class="img-responsive img-rounded"/>
-                        <h4>"{{$pleg->pledge}}"</h4>
-                        <p>{{$pleg->details}}</p>
+                        <!-- <h4>"{{$pleg->pledge}}"</h4>
+                        <p>{{$pleg->details}}</p> -->
                     </div><!-- end issue -->
                 </div>
                 @endforeach
                 <!-- end col -->
                 <div class="col-md-7">
+                    @foreach($pledge as $pledge)
+                    <div class="issuse-wrap2 clearfix">
+                        <h4>"{{$pleg->pledge}}"</h4>
+                        <p>{{$pleg->details}}</p>
+                    </div><!-- end issue -->
+                    @endforeach
                     @foreach($issues as $issue)
                     <div class="issuse-wrap clearfix">
                         <img src="uploads/{{$issue->photo}}" alt="" class="img-responsive img-rounded alignleft"/>
