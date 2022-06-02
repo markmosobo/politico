@@ -39,7 +39,7 @@ class MpesaController extends Controller
             'Timestamp' => Carbon::rawParse('now')->format('YmdHms'),
             'TransactionType' => 'CustomerPayBillOnline',
             'Amount' => 5,
-            'PartyA' => 254728858889, // replace this with your phone number
+            'PartyA' => 254790659917, // replace this with your phone number
             'PartyB' => 174379,
             'PhoneNumber' => 254796984737, // replace this with your phone number
             'CallBackURL' => 'https://mydomain.com/path',
