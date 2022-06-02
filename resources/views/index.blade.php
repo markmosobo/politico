@@ -131,7 +131,7 @@ __ez.queue.addFunc("attach_ezolpl", "attach_ezolpl", ["d5167543-c10d-4519-5222-a
     <!-- LOADER -->
     <div id="preloader">
         <div id="main-ld">
-			<div id="loader"></div>  
+			<div id="loader"><img src="images/logos/logo.png" alt="image"/></div>  
 		</div>
     </div><!-- end loader -->
     <!-- END LOADER -->
