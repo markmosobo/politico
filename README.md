@@ -155,7 +155,7 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 
 
 <!-- ROADMAP -->
-## Roadmap
+<!-- ## Roadmap
 
 - [x] Add Changelog
 - [x] Add back to top links
@@ -168,7 +168,7 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-
+ -->
 
 
 <!-- CONTRIBUTING -->
@@ -201,8 +201,8 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@your_twitter](https://twitter.com/markmosobo) - email@example.com
-
+<!-- Your Name - [@your_twitter](https://twitter.com/markmosobo) - email@example.com
+ -->
 Project Link: [https://github.com/markmosobo/politico](https://github.com/markmosobo/politico)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
