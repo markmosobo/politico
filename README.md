@@ -76,7 +76,7 @@
 ## About The Project
 
 [![WhatsApp Image 2022-06-03 at 7 22 25 PM](https://user-images.githubusercontent.com/34887895/171923286-ee498357-f417-4dd5-9ce4-8ce1c17b2e47.jpeg)
-]](https://politico.herokuapp.com)
+]]
 A simple campaign website to expand voter outreach and broaden contributions.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
