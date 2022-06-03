@@ -117,26 +117,34 @@ _Below is an example of how you can instruct your audience on installing and set
    ```sh
    git clone https://github.com/markmosobo_/jackieokanya.git
    ```
-3. Install dependencies
-   * composer
+3. Install composer dependencies
   ```sh
-  composer install 
+   composer install
   ```
 4. Install NPM packages
    ```sh
    npm install
    ```
-5. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
+5. Run this command
+   ```sh
+   cp .env.example .env
    ```
 
+6. Then we generate key with this command
+   ```sh
+   php artisan key:generate
+   ```
+
+7. Finally
+   ```sh
+   php artisan serve
+   ```   
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
-
+<!-- 
 <!-- USAGE EXAMPLES -->
-## Usage
+<!-- ## Usage
 
 Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
 
@@ -177,7 +185,7 @@ Don't forget to give the project a star! Thanks again!
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+<p align="right">(<a href="#top">back to top</a>)</p> --> -->
 
 
 
