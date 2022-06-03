@@ -29,11 +29,11 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+  <a href="https://github.com/markmosobo/politico">
+<!--     <img src="images/logo.png" alt="Logo" width="80" height="80"> -->
   </a>
 
-  <h3 align="center"> Jacky Okanya</h3>
+  <h3 align="center"> Politico</h3>
 
   <p align="center">
     A political campaign website
@@ -75,9 +75,9 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][![WhatsApp Image 2022-06-03 at 7 22 25 PM](https://user-images.githubusercontent.com/34887895/171923286-ee498357-f417-4dd5-9ce4-8ce1c17b2e47.jpeg)
-]](https://example.com)
-I wanted to open up campaign outreach and scope of funding to a much larger audience within Kenya, a country where as soon as elections are done there is nothing historically accurate to document the candidate's goals and a report card at the end of his/her tenure. This simple website answers that.
+[![WhatsApp Image 2022-06-03 at 7 22 25 PM](https://user-images.githubusercontent.com/34887895/171923286-ee498357-f417-4dd5-9ce4-8ce1c17b2e47.jpeg)
+]](https://politico.herokuapp.com)
+A simple campaign website to expand voter outreach and broaden contributions.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
